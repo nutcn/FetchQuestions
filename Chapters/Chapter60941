@@ -1,0 +1,3048 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta property="wb:webmaster" content="862cd81d728f34c3" />
+    <title>圣才题库在线考试</title>
+    
+    <link rel="stylesheet" href="/Scripts/jqwidgets/styles/jqx.base.css" />
+    <link rel="stylesheet" href="/Scripts/jqwidgets/styles/jqx.classic.css" />
+    <link href="/Content/css/css.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/css/jquery-ui.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/css/window.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/css/windowFB.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="/Content/css/framepage/frameFeedBack.css" />
+    <!--3d样式-->
+    <link href="/Content/css/mainStyle.css?v=1" rel="stylesheet" type="text/css" />
+    <link href="/Content/css/frameMenu.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/css/activation.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/css/activationSuccess.css" rel="stylesheet" type="text/css" />
+    <link href="/Content/css/frameCalculator.css" rel="stylesheet" type="text/css" />
+
+    <!--3d样式-->
+    <script type="text/javascript" src="/Scripts/jquery-1.8.2.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery-ui-1.8.24.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.toJson.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.cookie.js"></script>
+    <script type="text/javascript" src="/Scripts/jqwidgets/jqxcore.js"></script>
+    <script type="text/javascript" src="/Scripts/jqwidgets/jqx-all.js"></script>
+    <script type="text/javascript" src="/Scripts/jqwidgets/jqxwindow.js"></script>
+    <script type="text/javascript" src="/Scripts/jqwidgets/jqxvalidator.js"></script>
+    <script src="/Scripts/gettheme.js" type="text/javascript"></script>
+    <script src="/Scripts/jquery.unobtrusive-ajax.min.js" type="text/javascript"></script>
+    <script src="/Content/js/jquery.clock.js?v=1" type="text/javascript"></script>
+    <script src="/Content/js/shield.js?v=1" type="text/javascript"></script>
+    <script src="/Content/js/jquery.hotkeys.js" type="text/javascript"></script>
+    <script src="/Content/js/tipswindown.js" type="text/javascript"></script>
+    <script src="/Content/js/tipswindownFB.js?v=1.1" type="text/javascript"></script>
+    <script src="/Content/js/sciencecalc.js" type="text/javascript"></script>
+    <script src="/Content/Scripts/json2.js" type="text/javascript"></script>
+    <!--3djs-->
+    <script src="/Content/js/layor.js?v=1" type="text/javascript"></script>
+    <script src="/Content/js/getparam.js" type="text/javascript"></script>
+
+</head>
+<body>
+    <!--隐藏键-->
+
+    <input type="hidden" name="TGadeID" value="" />
+    <!--题库编号-->
+    <input type="hidden" id="TQuestionPlanID" name="TQuestionPlanID" value="2554" />
+    <input type="hidden" name="FID" />
+    <input type="hidden" id="flag" value="chapter" />
+    <input type="hidden" name="PaperInPlanID" value="60941"/>
+    <!--试卷提交时间的限制-->
+    <input type="hidden" name="LeftMinutes" value="0" />
+    <input type="hidden" name="QuestionID" value="QuestionID" />
+    <!--考试来源-->
+    <input type="hidden" name="SourceID" value="2" />
+    <!--当前题库的分类-->
+    <input type="hidden" name="ClassTypeIds" value="1498" />
+    <!--当前试卷的在题库表里的编号-->
+    <input   type="hidden" name="PaperQuePlanID" value="60941" />
+    <!--考试提醒-->
+    <input  type="hidden" name="RemindTimes" value="" />
+    <input  type="hidden" name="RemindId" value="" />
+    <!--查看试题标准答案个数-->
+    <input type="hidden" name="PaperAnserNum" value="5" />
+    <!--查看试题视频讲解个数-->
+    <input type="hidden" name="AllowVideoNum" value="5" />
+    <!--允许考生查看成绩-->
+    <input type="hidden" id="AllowPaperViewSum" value="True" />
+
+
+    <input type="hidden" id="code" value="" />
+
+    <input type="hidden" id="groupName" value="" />
+
+    <!--弹出窗部分视图-->
+    
+<div id="search" style="display: none; z-index: 1000;">
+    <div class="search_se">
+        <span style="color: #ffffff;">搜索试题</span><span style="padding-left: 347px;">
+            <input type="button" name="clo" value="" class="closelog" onclick="Showclosed_Search()" />&nbsp;
+        </span>
+    </div>
+    <div class="search_content">
+        <table cellpadding="0" cellspacing="0" border="0" width="90%" style="margin: 0 auto;">
+            <tr>
+                <td height="30" colspan="2"></td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="text" name="QuestionContentKeyWord" id="QuestionContentKeyWord" class=" search_textbg" />
+                </td>
+                <td>
+                    <input type="button" id="btnSearch" class="search_textbtn" value="" onclick="questionSearch()" />
+                </td>
+            </tr>
+            <tr>
+                <td height="30" colspan="2">
+                    <span class="searchtext">说明：可以搜索本题库中全部带有该关键字的题目，进行针对性练习。</span>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<!--卷面设置-->
+<div id="Settings" style="display: none; z-index: 1000;">
+    <div id="ColerExam" class="exam_xiq">
+        <span class="BtnClose">
+            <input type="button" name="clo" value="" class="closelog" onclick="CloseSetting()" />&nbsp;
+        </span>
+        卷面设置
+    </div>
+    <div>
+        <script type="text/javascript">
+            function ziliao_onclick() {
+                document.getElementById("ziliao").style.display = "";
+            }
+            $(document).ready(function () {
+                $("#jqxwindow ").jqxWindow({ height: 360, width: 270, theme: 'summer' });
+                $("#jqxwindoww ").jqxWindow({ height: 360, width: 270, theme: 'summer' });
+            });
+
+            $(document).ready(function () {
+                $("#xuanze").click(function () {
+                    $("#biaokuan").val("");
+                    $(".FontColor").css("border", "1px solid #cccccc");
+                    $("#FontColorSer").toggle(); //显示与隐藏
+                });
+                $("#yan").click(function () {
+                    $("#biaokuan").val("");
+                    $(".BackgColor").css("border", "1px solid #cccccc");
+                    $("#BackgColorSer").toggle(); //显示与隐藏
+                });
+                $("#BtnBackgColor").click(function () {//背景颜色层
+                    $("#biaokuan").val("");
+                    $(".FontColor").css("border", "1px solid #cccccc");
+                    $("#BackgColorSer").hide();
+                });
+                $("#BtnFontColor").click(function () {//字体颜色层
+                    $("#biaokuan").val("");
+                    $(".BackgColor").css("border", "1px solid #cccccc");
+                    $("#FontColorSer").hide();
+                });
+            })
+        </script>
+        <div style="background: #fff;">
+            <!--主体-->
+<div class="mainInserty config1" id="sample" style="width: 798px; height: 470px; border-bottom: 1px solid #007371;">
+
+    <div id="list" class="RightCon config1" style="width: 798px; height: 462px; border-right: 1px solid #007371; font-size:14px;" name="beijing">
+        <div class="ScrollContent config1" name="beijing">
+            <h1>
+                第一章 证券市场概述</h1>
+            <h2>
+                一、单项选择题（以下给出的4个选项中，只有一项最符合题目要求，请选出正确的选项，不选、 错选均不得分）</h2>
+            <div class="Item config1" name="beijing" style="height: 336px; overflow: auto; overflow-x: hidden;">
+                <div class="config1 question " name="beijing">
+                    <dl>
+                        <dt>1.美国次贷危机引发的全球金融危机和经济危机爆发后，各国对金融监管改革形成的共识主要体现在（ ）。 </dt>
+                        <dd>
+                            <table class="config1">
+                                <tr>
+                                    <td width="2%">
+                                        <input type="radio" name="radiobutton" value="radiobutton" />
+                                    </td>
+                                    <td width="2%">
+                                        A.
+                                    </td>
+                                    <td width="96%">
+                                        金融分业经营
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="radiobutton" value="radiobutton" />
+                                    </td>
+                                    <td>
+                                        B.
+                                    </td>
+                                    <td>
+                                        对金融监管边界的重新界定
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="radiobutton" value="radiobutton" />
+                                    </td>
+                                    <td>
+                                        C.
+                                    </td>
+                                    <td>
+                                        限制高管年薪
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="radio" name="radiobutton" value="radiobutton" />
+                                    </td>
+                                    <td>
+                                        D.
+                                    </td>
+                                    <td>
+                                        金融混业经营
+                                    </td>
+                                </tr>
+                            </table>
+                        </dd>
+                    </dl>
+                </div>
+                <div class="ItemBot" name="beijing">
+                    <div class="toolBar">
+                        <a class="btn_NOVideo" href="#">隐藏答案</a> <a class="btn_NOVideo" href="#">收藏</a> <a class="btn_NOVideo" href="#">标记</a>
+                    </div>
+                    <div class="answer config1">
+                        <table>
+                            <tr>
+                                <td>
+                                    <font style="color: #007370">【答案】</font> B
+                                </td>
+                            </tr>
+                            <tr>
+                                <td >
+                                    <font style="color: #007370">【解析】</font> 随着金融危机的不断蔓延，各国(地区)监管机构逐步形成了对现行金融监管体系进行改革的共识，最主要的是对金融监管边界的重新界定。自20世纪80年代初以来，西方国家掀起了一场以放松金融管制为主要目标的金融自由化运动。放松金融管制的实际结果是明显地缩小了监管的范围和边界，扩大了无监管或少监管的范围，尤其是对近年来出现的创新金融产品和基金业几乎没有监管。
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<form action="/PracticeCenter/VolumSet/Update" data-ajax="true" data-ajax-success="success" id="form0" method="post">                <div class="shezhiColor">
+                    <div class="Setitem">
+                        字体
+                            <select name="Family" onchange="god()">
+                                <option value="宋体">宋体</option>
+                                <option value="华文中宋">华文中宋</option>
+                                <option value="楷体">楷体</option>
+                                <option value="隶书">隶书</option>
+                                <option value="微软雅黑">微软雅黑</option>
+                                <option value="新宋体">新宋体</option>
+                            </select>
+                        &nbsp;
+                        字体大小
+                        <input id="zhiti" onkeyup="zhitidaxiao()"  style="width:50px; " type="text" name="fontSize" value="#fff" />
+                    </div>
+                    <div class="Setitem">
+                        字体颜色
+                        <input type="button" name="" style=" border:1px solid #999999; cursor:pointer; width:20px;  height: 20px;  background-color: #330;" id="xuanze" />
+                        &nbsp;
+                            <div id='FontColorSer' style="display: none;">
+                                <div class="exam_xiq">
+                                    <span style="float: right">
+                                        <input type="button" name="clo" value="" class="closelog" id="BtnFontColor" />
+                                    </span>
+                                    选择字体颜色
+                                </div>
+                                <div id="Fontcontent">
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="FontColor" id="F1" style="background-color: #000000; cursor: pointer;"></div>
+                                            </td>
+                                            <td>
+                                                <div class="FontColor" id="F2" style="background-color: #003466; cursor: pointer;"></div>
+                                            </td>
+                                            <td>
+                                                <div class="FontColor" id="F3" style="background-color: #010068; cursor: pointer;"></div>
+                                            </td>
+                                            <td>
+                                                <div class="FontColor" id="F4" style="background-color: #660066; cursor: pointer;"></div>
+                                            </td>
+                                            <td>
+                                                <div class="FontColor" id="F5" style="background-color: #A50022; cursor: pointer;"></div>
+                                            </td>
+                                            <td>
+                                                <div class="FontColor" id="F6" style="background-color: #633400; cursor: pointer;"></div>
+                                            </td>
+                                            <td>
+                                                <div class="FontColor" id="F7" style="background-color: #023200; cursor: pointer;"></div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <script type="text/javascript">
+                                        $(".FontColor").click(function () {
+                                            var FColor = $("#biaokuan").val();
+                                            if (FColor != null && FColor != "")
+                                                $("#" + $("#biaokuan").val()).css("border", "");
+                                            $("#biaokuan").val($(this).attr("id")); //当前值给控件
+                                            $(this).css("border", "2px solid #007371");
+                                            var yanse = $(this).css("background-color");
+
+                                            $(".config1").css("color", yanse);
+                                            $("#xuanze").css("background", yanse);
+                                            $("#xuanze").css("boder", "0");
+                                            $("input[name='FontColor']").val(yanse);
+                                            $("#FontColor").val(yanse);
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                    </div>
+                    <input type="hidden" id="biaokuan" value="" />
+                    <input type="hidden" value="#330" name="FontColor"/>
+                    <div class="Setitem">
+                        背景颜色<input type="button" style="  border:1px solid #999999; width: 20px; height: 20px; cursor:pointer; background-color: 14" id="yan" />&nbsp;
+                            <div id='BackgColorSer' style="display: none;">
+                                <div class="exam_xiq">
+                                    <span style="float: right">
+                                        <input type="button" name="clo" value="" class="closelog" id="BtnBackgColor" /></span>
+                                    选择背景颜色
+                                </div>
+                                <div id='BgColorContentt'>
+                                    <table>
+                                        <tr>
+                                            <td>
+                                                <div class="BackgColor" id="B1" style="background-color: #FFFFFF; cursor: pointer;">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="BackgColor" id="B2" style="background-color: #CEFEFF; cursor: pointer;">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="BackgColor" id="B3" style="background-color: #CAEDFF; cursor: pointer;">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="BackgColor" id="B4" style="background-color: #FDCDFF; cursor: pointer;">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="BackgColor" id="B5" style="background-color: #FECDC9; cursor: pointer;">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="BackgColor" id="B6" style="background-color: #FFFFCB; cursor: pointer;">
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <div class="BackgColor" id="B7" style="background-color: #CDFFC8; cursor: pointer;">
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <script type="text/javascript">
+                                        $(".BackgColor").click(function () {
+                                            var FColor = $("#biaokuan").val();
+                                            if (FColor != null && FColor != "")
+                                                $("#" + $("#biaokuan").val()).css("border", "");
+                                            $("#biaokuan").val($(this).attr("id")); //给当前值给控件
+                                            $(this).css("border", "2px solid #007371");
+                                            var beijingys = $(this).css("background-color");
+                                            $("div[name='beijing']").css("background", beijingys);
+                                            $("#yan").css("background", beijingys);
+                                            $("input[name='BgColor']").val(beijingys);
+                                            $(".config1").css("background", beijingys);
+                                            $("#bgColor").val(beijingys);
+
+                                        });
+                                    </script>
+                                </div>
+                            </div>
+                    </div>
+                    <input type="hidden" value="14" name="BgColor"/>
+                    <div class="Setitem">
+                        行间距
+                            <input type="text" onblur="changeline()" value="宋体"    name="LineSpacing" style="width:50px" />%
+                    </div>
+                    <div class="Setitem">
+                        <input type="button" id="default" class="btnn" value="恢复默认" />
+                        <input type="hidden" id="bgColor" name="bgColor" />
+                        <input type="hidden" id="FontColor" name="FontColor" />
+                        <input type="button" class="btnn" onclick="return save()" value="确定" />
+                        <input type="button" id="cancel" class="btnn" value="取消" onclick="return Showclosed_SetPaper()" />
+                    </div>
+                </div>
+</form>        </div>
+        <script type="text/javascript">
+            function save() {
+                //onclick="return save()"
+                //字体
+                $(".config").css("font-family", $("select[name='Family']").val());
+                //字体大小
+                $(".config").css("font-size", document.getElementById("zhiti").value + "px");
+                //行间距
+                var height = $("input[name='LineSpacing']").val() + "%";
+                $(".config table tr td ,dd,dt").css({ "line-height": height });
+                $("#Settings").hide();
+                var bg = $("#bgColor").val();
+                var font = $("#FontColor").val();
+                $(".config").css("background", bg); //更改当前背景颜色
+                $(".config").css("color", font); //更改当前字体颜色
+                //$("#form0").submit();
+                var bgcolor = bg; //背景颜色
+                var fontcolor = font;  //字体颜色
+                var LineSpacing = $("input[name='LineSpacing']").val();  //行间距
+                var Family = $("select[name='Family']").val();  //字体
+                var FontSize = document.getElementById("zhiti").value;
+                $.get("/PracticeCenter/VolumSet/UpdateAjax",
+                                    {
+                                        BgColor: bgcolor,
+                                        Family: Family,
+                                        FontColor: fontcolor,
+                                        FontSize: FontSize,
+                                        LineSpacing: LineSpacing,
+                                        rand: Math.random()
+                                    },
+                                    function (data) {
+                                        //                                            if (data == "true")
+                                        //                                                $("#deptcity").html(data);
+                                        //                                            else
+                                    });
+                alert("更新成功");
+
+                return true;
+            }
+            //字体
+            function god() {
+                $("#sample").children().find(".config1").css("font-family", $("select[name='Family']").val());
+            }
+            //字体大小
+            function zhitidaxiao() {
+                $("#sample").children().find(".config1").css("font-size", document.getElementById("zhiti").value + "px");
+            }
+            //行间距
+            function changeline() {
+                var height = $("input[name='LineSpacing']").val() + "%";
+                $("#sample").children().find(".config1 dd,dt,td").css({ "line-height": height });
+            }
+            //字体颜色
+            $('#xuanze').click(function () {
+                $('#jqxwindow').jqxWindow('open');
+                $('#jqxwindow').jqxWindow('bringToFront');
+            });
+            $('#caozuo').click(function () {
+                $('#jqxwindow').jqxWindow('close');
+            });
+            $('#closebg').click(function () {
+                $('#jqxwindoww').jqxWindow('close');
+            });
+            //背景颜色
+            $('#yan').click(function () {
+                $('#jqxwindoww').jqxWindow('open');
+                $('#jqxwindoww').jqxWindow('bringToFront');
+            });
+            $('#caozuor').click(function () {
+                $('#jqxwindoww').jqxWindow('close');
+            });
+
+            $("#default").click(function () {
+                $.post("/PracticeCenter/PaperAjax/GetDefaultConfig", null, function (data) {
+                    $("select[name='Family'] option[value='" + data.Family + "']").attr("selected", "selected");
+                    $("select[name='Family']").trigger("change");
+                    $("#zhiti").val(data.FontSize);
+                    $("#zhiti").trigger("onkeyup");
+                    //背景
+                    $("div[name='beijing']").css("background", data.BgColor);
+                    $("#yan").css("background", data.BgColor);
+                    $("input[name='BgColor']").val(data.BgColor);
+                    //$(".config").css("background", data.BgColor);
+                    $(".config1").css("background", data.BgColor);
+                    //字体
+                    //$(".config").css("color", data.FontColor);
+                    $(".config1").css("color", data.FontColor);
+                    $("#xuanze").css("background", data.FontColor);
+                    $("#xuanze").css("boder", "0");
+                    $("input[name='FontColor']").val(data.FontColor);
+                    //$(".config").css("font-size", data.Family + "px");
+                    $(".config1").css("font-size", data.Family + "px");
+                    //行间距
+                    var height = data.LineSpacing;
+                    $("input[name='LineSpacing']").val(height) + "%";
+
+                    $("#bgColor").val(data.BgColor.substring(1)); //字体颜色
+                    $("#FontColor").val(data.FontColor.substring(1)); //背景颜色
+
+                    //$(".config table tr td,dd,dt").css({ "line-height": height + "%" });
+                    $(".config1 table tr td,dd,dt").css({ "line-height": height + "%" });
+                });
+            });
+            $("#cancel").click(function () {
+                $("#Settings").hide();
+            });
+        </script>
+    </div>
+</div>
+<!--成绩统计-->
+<div id="staticresult" style="display: none; position: absolute; left: 50%; top: 100px; width: 600px; z-index: 99999; background-color: #ffffff; border: 2px solid #14A6B1;">
+    <div class="exam_xiq">
+        <span class="BtnClose">
+            <input type="button" name="clo" value="" class="closelog" onclick="CloseStaticresult()" /></span>本次测试结果
+    </div>
+    <input id="gettrdatahid" type="hidden" />
+    <div id="testResult" class="exam_xiq_Con">
+        <div>
+            <div style="font-size: 14px; font-weight: bold; text-align: center;">
+                本次测试结果
+            </div>
+            <div style="font-size: 12px; font-weight: normal; text-align: center;">
+                （用时: <span id="timesss"></span>）<span id="tipgive"></span>
+            </div>
+        </div>
+        <table cellpadding="0" cellspacing="1" width="100%" style="text-align: center;" bgcolor="#d5d5d5"
+            class="ctcz_tab">
+        </table>
+        <table cellpadding="0" cellspacing="0" width="100%" style='text-align: center; color: #333333; font-size: 14px; padding: 0 5px;'>
+            <tr>
+                <td id="allCount" colspan="10" height="30"></td>
+            </tr>
+            <tr>
+                <td width="70" height="60">
+                    <img src="/Content/ImagesX/imgHappy.gif " alt="对" />
+                </td>
+                <td id="rightCount" width="70"></td>
+                <td width="50"></td>
+                <td width="70">
+                    <img src="/Content/ImagesX/imgCry.gif" alt="错" />
+                </td>
+                <td id="wrongCount" width="70"></td>
+                <td width="50"></td>
+                <td width="70">
+                    <img src="/Content/ImagesX/imgSweat.gif" alt="未做" />
+                </td>
+                <td id="unanserCount" width="80"></td>
+                <td></td>
+                <td></td>
+            </tr>
+        </table>
+    </div>
+    <div style="height: 30px; line-height: 30px; background-color: #FFFFFF; text-align: center; padding: 10px 0px; border-top: 1px solid #d5d5d5;">
+        <span onclick="CloseStaticresult()" style="display: inline-block; zoom: 1; color: #ffffff; background-color: #007F7F; height: 30px; line-height: 30px; width: 110px; cursor: pointer">查看答卷</span>
+        <span class="SpanCTCZ" style="display: inline-block; zoom: 1; background-color: #007F7F; height: 30px; line-height: 30px; width: 110px;">
+            <a id="CTCZ" style="color: #ffffff;" name="Btn_chick" href="#sousuo#" rimd="/PracticeCenter/Wrong/Index">错题重做</a>
+            <input type="hidden" id="tb_l_PaperQuePlanIDtypesss" value="60941" />
+        </span>
+    </div>
+</div>
+<!--考试提醒-->
+<div id="ExamRemind" style="display: none; border: solid 1px #007371; background: #f1f6fa; width: 450px; z-index: 1001; height: 140px; position: absolute; top: 50%; left: 50%; margin-left: -200px; margin-top: -125px; background: url('/Content/images/message_bg.gif')">
+    <div class="close">
+        <span class="thicktitle">考试提醒</span> <span class="colseleft">
+            <input type="button" name="clo" value="" class="closelog" onclick="return CloseExamAlart()" />&nbsp;</span>
+    </div>
+    <div class="time_content">
+        <div class="time_content_left">
+            <img src="/Content/ImagesX/clock.jpg" alt="考试提醒" />
+        </div>
+        <div class="time_content_right">
+            <h3>距离考试还有<span id="leaveday"></span>天</h3>
+        </div>
+    </div>
+</div>
+<!--答题卡-->
+<div id="ansersum">
+    <div class="Title" id="ClacTitle11">
+        答题卡
+        <span class="BtnClose">
+            <input type="button" name="clo" value="" class="closelog" onclick="Closeansersum()" />
+        </span>
+    </div>
+    <div class="gaikuo">
+        <ol id="selectable"></ol>
+        <div style="clear: both;">
+            <table cellpadding="0" cellspacing="0" width="100%" style="margin: 0 auto;">
+                <tbody>
+                    <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="Mark">
+        <table>
+            <tbody>
+                <tr>
+                    <td>
+                        <div class='ui-state-default' style="background: #007371; width: 20px; height: 20px;"></div>
+                    </td>
+                    <td>已答题</td>
+                    <td>
+                        <div class='ui-state-default' style="background: #DCF2ED; width: 20px; height: 20px;"></div>
+                    </td>
+                    <td>未答题</td>
+                    <td>
+                        <div style="width: 20px; height: 20px; border: 1px solid #FD6700;"></div>
+                    </td>
+                    <td>已标记</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+<script>
+    $("#ansersum").draggable({ handle: "#ClacTitle11", scroll: false });
+</script>
+<!--计算器-->
+
+<div id="calc" class="Calculator" style="display: none; position: absolute; left: 300px; top: 300px; width: 600px; z-index: 555; border: 2px solid #14A6B1;">
+    <div class="Title" id="ClacTitle" style="cursor: move; margin-top: 0px;">
+        <span class="BtnClose">
+            <input type="button" name="clo" value="" class="closelog" onclick="Showclosed()" /></span>
+        科学计算器
+    </div>
+    <div>
+        <div class="Con">
+            <form name="calc">
+                <table width="560" height="250" bgcolor="#E6F2E7" style="border-width: 1px 1px 1px 1px; border-style: solid; border-color: #8AB78A;">
+                    <tbody>
+                        <tr>
+                            <td height="50" bgcolor="#E6F2E7">
+                                <table width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td align="center"></td>
+                                        </tr>
+                                        <tr>
+                                            <td height="35" align="center">
+                                                <input name="display" readonly size="50" value="0" style="font-size: 18px;" />
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td bgcolor="#E6F2E7">
+                                <table width="100%" style="border-width: 1px 0px 0px 0px; border-style: solid; border-color: #8AB78A;">
+                                    <tbody>
+                                        <tr>
+                                            <td style="color: #205001;">
+                                                <input name="carry" onclick="inputChangCarry(16)" type="radio">
+                                                十六进制
+                                                                        <input checked name="carry" onclick="inputChangCarry(10)" type="radio">
+                                                十进制
+                                                                        <input name="carry" onclick="inputChangCarry(8)" type="radio">
+                                                八进制
+                                                                        <input name="carry" onclick="inputChangCarry(2)" type="radio">
+                                                二进制
+                                            </td>
+                                            <td width="187" style="color: #205001;">
+                                                <input checked name="angle" onclick="inputChangAngle('d')" type="radio" value="d">
+                                                角度制
+                                                                        <input name="angle" onclick="inputChangAngle('r')" type="radio" value="r">
+                                                弧度制
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td width="140" style="color: #205001;">
+                                                <input name="shiftf" onclick="inputshift()" type="checkbox">上档功能
+                                                                        <input name="hypf" onclick="inputshift()" type="checkbox">双曲函数
+                                            </td>
+                                            <td width="174" align="center">
+                                                <input name="bracket" readonly size="3" style="background-color: lightgrey; height: 20px; line-height: 20px;">
+                                                <input name="memory" readonly size="3" style="background-color: lightgrey; height: 20px; line-height: 20px;">
+                                                <input name="operator" readonly size="3" style="background-color: lightgrey; height: 20px; line-height: 20px;">
+                                            </td>
+                                            <td align="right">
+                                                <input onclick="backspace()" class="BtnBlack" type="button" value="退格">
+                                                <input onclick="document.calc.display.value = 0 " class="BtnRed" type="button" value="清屏">
+                                                <input onclick="clearall()" class="BtnRed" type="button" value="全清">
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <table width="100%">
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <table>
+                                                    <tbody>
+                                                        <tr align="middle">
+                                                            <td>
+                                                                <input name="pi" onclick="inputfunction('pi', 'pi')" class="BtnBlue" type="button"
+                                                                    value=" PI　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="e" onclick="inputfunction('e', 'e')" class="BtnBlue" type="button" value="　E　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="bt" onclick="inputfunction('dms', 'deg')" class="BtnMagenta" type="button"
+                                                                    value=" d.ms ">
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="middle">
+                                                            <td>
+                                                                <input onclick="addbracket()" class="BtnMagenta" type="button" value="　(　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="disbracket()" class="BtnMagenta" type="button" value="　)　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="ln" onclick="inputfunction('ln', 'exp')" class="BtnMagenta" type="button"
+                                                                    value="　ln　">
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="middle">
+                                                            <td>
+                                                                <input name="sin" onclick="inputtrig('sin', 'arcsin', 'hypsin', 'ahypsin')" class="BtnMagenta"
+                                                                    type="button" value="sin　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="operation('^', 7)" class="BtnMagenta" type="button" value="x^y　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="log" onclick="inputfunction('log', 'expdec')" class="BtnMagenta" type="button"
+                                                                    value=" log　">
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="middle">
+                                                            <td>
+                                                                <input name="cos" onclick="inputtrig('cos', 'arccos', 'hypcos', 'ahypcos')" class="BtnMagenta"
+                                                                    type="button" value="cos　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="cube" onclick="inputfunction('cube', 'cubt')" class="BtnMagenta" type="button"
+                                                                    value="x^3　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="inputfunction('!', '!')" class="BtnMagenta" type="button" value="　n!　">
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="middle">
+                                                            <td>
+                                                                <input name="tan" onclick="inputtrig('tan', 'arctan', 'hyptan', 'ahyptan')" class="BtnMagenta"
+                                                                    type="button" value="tan　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="sqr" onclick="inputfunction('sqr', 'sqrt')" class="BtnMagenta" type="button"
+                                                                    value="x^2　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="inputfunction('recip', 'recip')" class="BtnMagenta" type="button"
+                                                                    value=" 1/x　">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td width="30"></td>
+                                            <td>
+                                                <table>
+                                                    <tbody>
+                                                        <tr>
+                                                            <td align="center">
+                                                                <input onclick="putmemory()" class="BtnRed" type="button" value=" 储存 ">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input onclick="getmemory()" class="BtnRed" type="button" value=" 取存 ">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input onclick="addmemory()" class="BtnRed" type="button" value=" 累存 ">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input onclick="multimemory()" class="BtnRed" type="button" value=" 积存 ">
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>
+                                                                <input onclick="clearmemory()" class="BtnRed" type="button" value=" 清存 ">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                            <td width="30"></td>
+                                            <td>
+                                                <table>
+                                                    <tbody>
+                                                        <tr align="middle">
+                                                            <td>
+                                                                <input name="k7" onclick="inputkey('7')" class="BtnBlue" type="button" value="　7　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="k8" onclick="inputkey('8')" class="BtnBlue" type="button" value="　8　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="k9" onclick="inputkey('9')" class="BtnBlue" type="button" value="　9　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="operation('/', 6)" class="BtnRed" type="button" value="　/　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="operation('%', 6)" class="BtnRed" type="button" value=" 取余 ">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="operation('&amp;', 3)" class="BtnRed" type="button" value="　与　">
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="middle">
+                                                            <td>
+                                                                <input name="k4" onclick="inputkey('4')" class="BtnBlue" type="button" value="　4　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="k5" onclick="inputkey('5')" class="BtnBlue" type="button" value="　5　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="k6" onclick="inputkey('6')" class="BtnBlue" type="button" value="　6　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="operation('*', 6)" class="BtnRed" type="button" value="　*　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="floor" onclick="inputfunction('floor', 'deci')" class="BtnRed" type="button"
+                                                                    value=" 取整 ">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="operation('|', 1)" class="BtnRed" type="button" value="　或　">
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="middle">
+                                                            <td>
+                                                                <input onclick="inputkey('1')" class="BtnBlue" type="button" value="　1　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="k2" onclick="inputkey('2')" class="BtnBlue" type="button" value="　2　">
+                                                            </td>
+                                                            <td>
+                                                                <input name="k3" onclick="inputkey('3')" class="BtnBlue" type="button" value="　3　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="operation('-', 5)" class="BtnRed" type="button" value="　-　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="operation('<', 4)" class="BtnRed" type="button" value=" 左移 ">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="inputfunction('~', '~')" class="BtnRed" type="button" value="　非　">
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="middle">
+                                                            <td>
+                                                                <input onclick="inputkey('0')" class="BtnBlue" type="button" value="　0　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="changeSign()" class="BtnBlue" type="button" value=" +/- ">
+                                                            </td>
+                                                            <td>
+                                                                <input name="kp" onclick="inputkey('.')" class="BtnBlue" type="button" value="　.　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="operation('+', 5)" class="BtnRed" type="button" value="　+　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="result()" class="BtnRed" type="button" value="　＝　">
+                                                            </td>
+                                                            <td>
+                                                                <input onclick="operation('x', 2)" class="BtnRed" type="button" value=" 异或 ">
+                                                            </td>
+                                                        </tr>
+                                                        <tr align="middle">
+                                                            <td>
+                                                                <input disabled name="ka" onclick="inputkey('a')" class="BtnBlue" type="button" value="　A 　">
+                                                            </td>
+                                                            <td>
+                                                                <input disabled name="kb" onclick="inputkey('b')" class="BtnBlue" type="button" value="　B 　">
+                                                            </td>
+                                                            <td>
+                                                                <input disabled name="kc" onclick="inputkey('c')" class="BtnBlue" type="button" value="　C 　">
+                                                            </td>
+                                                            <td>
+                                                                <input disabled name="kd" onclick="inputkey('d')" class="BtnBlue" type="button" value="　D　">
+                                                            </td>
+                                                            <td align="center">
+                                                                <input disabled name="ke" onclick="inputkey('e')" class="BtnBlue" type="button" value="　E 　">
+                                                            </td>
+                                                            <td align="center">
+                                                                <input disabled name="kf" onclick="inputkey('f')" class="BtnBlue" type="button" value="　F 　">
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </form>
+        </div>
+    </div>
+</div>
+<!--题库购买-->
+<div class="ActivationSuccess" id="aliveSuccess" style="display: none; z-index: 4000;">
+    <div class="Title">
+        <a href="javascript:void(0)" onclick="closealiveSuccess()" class="BtnClose">
+            <img src="http://g.100xuexi.com/images/blank.gif" alt="关闭" title="关闭" /></a>圣才题库购买/激活
+    </div>
+    <div class="Con">
+        <div class="Success">
+            <div class="Words">已激活成功，可终身使用，免费升级！</div>
+            <p class="MachineID">当前电脑机器码为：</p>
+        </div>
+        <div class="ContactUs">
+            <table>
+                <tr>
+                    <td>                        客服热线：4006-123-191（8:30-23:00）
+</td>
+                    <td>                        4006123191
+</td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                            官方网站：http://www.100xuexi.com 
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<div class="Activation" id="buy" style="display: none;">
+    <input type="hidden"  id="proName" value="2016年康复医学治疗技术（士）考试题库【章节题库＋模拟试题】" />
+    <input type="hidden"  id="Text2" value="TK006136083604" />
+    <input type="hidden"  id="Text3" value="30.00"
+                             />
+    <input type="hidden"  id="machcode" name="machcode"
+                                value=""  />
+
+    <div class="Title">
+        <a href="javascript:void(0)" class="BtnClose" onclick="return PulicCloer('buy',1)">
+            <img src="http://g.100xuexi.com/images/blank.gif" alt="关闭" title="关闭" /></a>圣才题库购买/激活
+    </div>
+    <div class="Con">
+        <div class="BookInfo">
+            <table>
+                <tr>
+                    <td colspan="2">
+                        <div class="TkName">名称：<em class="TkName">2016年康复医学治疗技术（士）考试题库【章节题库＋模拟试题】</em></div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>编号：<em>TK006136083604</em></td>
+                    <td>价格：<em>￥30.00</em></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <div class="Tips">购买/激活后，本题库的全部试题（含答案解析及视频讲解）均可看，永久有效，终生免费升级！</div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="avlidecode">
+            <a href="#" class="BtnBuy" id="BtnBuy" onclick="BuyPlanIiem()"></a>
+            <a href="javascript:void(0)" style="display: none;" onclick="return AliveCodeMachine(this)" class="BtnActivation"></a>
+        </div>
+        <fieldset id="alivecode">
+            <legend>如果您已有激活密码
+            </legend>
+            <table>
+                <tr>
+                    <th scope="row">输入激活密码：</th>
+                    <td>
+                        <label for="regcode"></label>
+                        <input type="text" id="regcode" name="regcode" value="" class="TextBox" />
+                    </td>
+                    <td><a href="#" class="ImportantBtn" onclick=" return AliveCode(this)">激活</a></td>
+                    <td><span class="Tips">机器码为：</span></td>
+                </tr>
+            </table>
+            <div class="Tips">【注意】购买、激活时需要电脑连接互联网，密码一旦使用，永久绑定当前圣才题库及当前电脑。</div>
+        </fieldset>
+
+        <div class="ContactUs">
+            <table>
+                <tr>
+                    <td id="hotLine">                        客服热线：4006-123-191（8:30-23:00）
+</td>
+                    <td id="qqinfo">
+                            4006123191
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2" id="officeWebSite">
+                            官方网站：http://www.100xuexi.com 
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("[name='Btn_chick']").click(function () {
+            CloseStaticresult();
+            var Urser_id = $("#HidUserInfor").val();
+            if (Urser_id == "" || Urser_id == undefined) {
+                var href = $(this).attr("href");
+                if (href == "" || href == undefined) {
+                    var href = document.URL;
+                }
+                $("#url").val(href);
+                $(this).attr("href", "#");
+                //调用蒙层
+                var range = getRange();
+                $("#doing").css({ width: range.width, height: range.height, display: "block" });
+                document.getElementById("login").style.display = "";
+
+                return false;
+            }
+            else {//成功
+                var ict = $(this).attr("Rimd");
+                window.location.href = ict + "?tb_l_PaperQuePlanID=" + $("#tb_l_PaperQuePlanIDtypesss").val();
+            }
+        });
+    });
+</script>
+
+    <div id="container" class="OutBox">
+        
+
+        <div id="top" class="Top" style="z-index: 5000">
+            <h1>2016年康复医学治疗技术（士）考试题库【章节题库＋模拟试题】</h1>
+            <div class="BtnContainer">
+                <ul>
+
+
+                    <li><a href="javascript:void(0)" title="菜单" class="BtnMenu"></a>
+                        <ul>
+
+                            
+                        </ul>
+                    </li>
+                    <li><a href="app:type=system&op=min" title="最小化" class="BtnMin"></a></li>
+
+                    <li><a href="app:type=system&op=exit" title="关闭" class="BtnClose"></a></li>
+                </ul>
+            </div>
+        </div>
+        <div id="lefter" class="LeftBar" style="z-index: 4000; background-color: none;">
+            <div class="LeftNav">
+                <div class="NavItemS Menu">
+                    <a class="BtnMenu" href="javascript:void(0)" onclick="Dic_LeftSHOW()" title="目录"></a>
+                </div>
+
+
+                    <div class="NavItemS">
+                            <a class="BtnBuy" href="#BuyOnline#" title="购买"></a>
+                    </div>
+
+
+
+                <div class="NavItemS" style="margin-top: 20px;">
+                        <a title="QQ：4006123191" target="_blank" onclick="QQCallShow('4006123191')" class="BtnQQ" title="客服"></a>
+                </div>
+                <div class="NavItemS"><a class="BtnGuide" href="javascript:void(0)" title="指南" id="BtnGudie"></a></div>
+
+                    <div class="NavItem">
+                        <a class="BtnSupport" href="javascript:void(0)" title="配套"></a>
+                        <div class="NavItemCon NavItemConSupport">
+                            <div class="BgTop"></div>
+                            <div class="BgMid">
+                                <!--插入配套e书题库-->
+                                <div class="ConSupport">
+                                    <link rel="stylesheet" type="text/css" href="http://g.100xuexi.com/CssModel/XXSub2014/CourseList.css" />
+                                    <div id="divCourseList">
+                                        <div id="divCourseList" >
+                        <div class="CourseT">2016年康复医学治疗技术·技士考试辅导</div><div class="SubjectList"><div class="T">科目：</div><ul><li><a href="javascript:void(0);" id="A11" class="Selected" onclick="setTabA('A1',1,1,this)" target="_self" folderUID = "519541c2-2048-48f9-b7ca-b288ad8076f2">康复医学治疗技术技士考试</a></li></ul></div><div id="conA11" ><div class="SubjectName"><strong>康复医学治疗技术技士考试</strong>视频课程、3D电子书（题库） </div><div>
+                        <table><tr>
+                                <th scope="col" style="width:170px;">全部产品</th>
+                                <th scope="col">教师</th>
+                                <th scope="col">课时</th>
+                                <th scope="col">原价</th>
+                                <th scope="col">优惠价</th>
+                                <th scope="col">辅导方案</th>
+                                <th scope="col"></th>
+                            </tr>
+                        <tr><td class="aLeft"><div class="ClassType">1.题库（免费下载，送手机版）</div></td><td>--</td><td>--</td><td>30元</td><td>30元</td><td><a href="http://tk.100xuexi.com/DigitalLibrary/Show.aspx?Id=2554" target="_blank">详情>></a></td><td><a href="http://tk.100xuexi.com/DigitalLibrary/Show.aspx?Id=2554"><img src="http://g.100xuexi.com/images/blank.gif" class="freedown"/></a></td></tr><tr class="aLeft">
+                                                            <td style="width:170px;" class="aLeft">
+                                                                <div class="ClassTypeShow">
+                                                                    3D电子书（题库）<br />
+                                                                    <img src="http://g.100xuexi.com/images/blank.gif" class="FreeDownload" />
+                                                                </div>
+                                                            </td><td colspan="6" class="aLeft"><ul><li>1.<a href="http://tk.100xuexi.com/DigitalLibrary/Show.aspx?Id=2554" target="_blank"><span class="cssType">[3D题库]</span>2016年康复医学治疗技术（士）考试题库【章节题库＋模拟试题】<span class="FreeDownload">[免费下载，送手机版<em class='SendApp'>&nbsp;</em>]</span></a></li></ul></td></tr></table></div></div><div class="clear"></div></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="BgBot"></div>
+                        </div>
+                    </div>
+                <div class="NavItem">
+                    <a class="MobileApp" href="javascript:void(0)"></a>
+                    <div class="MobileAppPrompt"></div>
+                    <div class="MobileRead">
+                        <div class="MobileReadTitle">
+                            <div class="T_1">
+                                <em class="SendApp">&nbsp;</em>在手机上使用
+                            </div>
+                            <div class="T_2">
+                                <a href="http://www.100eshu.com/ComExChange.aspx" target="_blank">如何开通手机版？</a>
+                            </div>
+                            <div class="T_3">
+                                <a href="http://bbs.100xuexi.com/thread-12010-1-1.html" target="_blank">查看图文说明&gt;&gt;</a>
+                                <a href="http://bbs.100xuexi.com/thread-12013-1-1.html" target="_blank">查看视频演示&gt;&gt;</a>
+                            </div>
+                        </div>
+                        <div class="MobileReadCon">
+                            <div class="Scan">
+                                <div class="Code">
+                                    <img src="http://www.100eshu.com/QrCodeHandlerNew.aspx?bookid=2554&amp;platnum=3">
+                                </div>
+                                <div class="Des">
+                                    <div>用圣才电子书app或微信扫一扫，在手机上使用本题库。</div>
+                                </div>
+                                <div class="DownloadLink">
+                                    <a href="http://www.100xuexi.com/Download.aspx?Fill=scebook&amp;H=apk" target="_blank" class="Android">安卓版，下载到电脑</a>
+                                    <a href="http://www.100xuexi.com/Download.aspx?Fill=scebook&amp;H=ipa" target="_blank" class="IOS">iOS版，下载到电脑</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="NavItem" style="display: none;">
+                    <a class="BtnAppipa" href="javascript:void(0)" title="圣才iPhone客户端"></a>
+                    <div class="NavItemCon NavItemConApp" style="z-index: 1000;">
+                        <div class="BgTop"></div>
+                        <div class="BgMid">
+                            <div class="ConApp">
+                                <div class="AppDes">
+                                    <h3>圣才iPhone客户端</h3>
+                                    <ul>
+                                        <li>最新版本：1.0</li>
+                                        <li>发布日期：2013.12.20</li>
+                                        <li>软件大小：5.24MB</li>
+                                        <li>兼容性：iOS6.0及以上系统</li>
+                                    </ul>
+                                    <div><a href="http://www.100xuexi.com/Download.aspx?Fill=sctiku&H=ipa" target="_blank" class="BtnDownload"></a></div>
+                                </div>
+                                <div class="CodeBox">
+                                    <div>
+                                        <img src="http://g.100xuexi.com/CssModel/XXMain2014/Images/sctikuipa.png" class="CodeImg" />
+                                    </div>
+                                    <div>扫面二维码直接下载到手机</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="BgBot"></div>
+                    </div>
+                </div>
+                
+                <div class="NavItem" style="display: none;">
+                    <a class="BtnAppapk" href="javascript:void(0)" title="圣才Android手机客户端"></a>
+                    <div class="NavItemCon NavItemConApp" style="z-index: 1000;">
+                        <div class="BgTop"></div>
+                        <div class="BgMid">
+                            <div class="ConApp">
+                                <div class="AppDes">
+                                    <h3>圣才Android手机客户端</h3>
+                                    <ul>
+                                        <li>最新版本：1.0.4</li>
+                                        <li>发布日期：2014.06.17</li>
+                                        <li>软件大小：5.24MB</li>
+                                        <li>兼容性：Android2.3.5及以上系统</li>
+                                    </ul>
+                                    <div><a href="http://www.100xuexi.com/Download.aspx?Fill=sctiku&H=apk" target="_blank" class="BtnDownload"></a></div>
+                                </div>
+                                <div class="CodeBox">
+                                    <div>
+                                        <img src="http://g.100xuexi.com/CssModel/XXMain2014/Images/sctikuapk.png" class="CodeImg" />
+                                    </div>
+                                    <div>扫描二维码直接下载到手机</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="BgBot"></div>
+                    </div>
+                </div>
+                <div class="NavItem" style="display: none;">
+                    <a class="BtnAppapkHD" href="javascript:void(0)" title="安卓一体机客户端"></a>
+                    <div class="NavItemCon NavItemConApp" style="z-index: 1000;">
+                        <div class="BgTop"></div>
+                        <div class="BgMid">
+                            <div class="ConApp">
+                                <div class="AppDes">
+                                    <h3>安卓一体机客户端</h3>
+                                    <ul>
+                                        <li>最新版本：1.1.3</li>
+                                        <li>发布日期：2014.02.22</li>
+                                        <li>软件大小：5.24MB</li>
+                                        <li>兼容性：Android2.3.5及以上系统</li>
+                                    </ul>
+                                    <div><a href="http://www.100xuexi.com/Download.aspx?Fill=sctikuHD&H=apk" target="_blank" class="BtnDownload"></a></div>
+                                </div>
+                                <div class="CodeBox">
+                                    <div>
+                                        <img src="http://g.100xuexi.com/CssModel/XXMain2014/Images/sctikuHDapk.png" class="CodeImg" />
+                                    </div>
+                                    <div>扫描二维码直接下载到平板</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="BgBot"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+         
+<script src="/Content/js/menu.js" type="text/javascript"></script>
+<!--主体左部-->
+<div class="left">
+    <div id="LeftbtnCler" class="btnCler" onclick="Dic_LeftSHOW()">
+        <a class="btnLeftMaperCler" title="关闭"></a>
+    </div>
+   
+    <div class="left_TitleTOP"><h2>题库目录</h2></div>
+    <div class="zj_nav">
+        <div class="inner">
+            <ul class="left_ul">
+                    <li  onclick="Chike('left_topk0',this)" style=" cursor:pointer;"><span class="ulShow">第一部分　章节题库</span>
+                        </li>
+                    <ul id="left_topk0" style="">
+                        <li><ul><li><span class="ulShow" onclick='showHide("item01",this)' style="cursor: pointer;">基础知识</span><ul id='item01' style=" display:block"><li><a  class="" title=第1章　康复医学概述 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60900&Model=chapter&TypeMenuFlag=2">第1章　康复医学概述</a></li><li><a  class="" title=第2章　解剖学 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60901&Model=chapter&TypeMenuFlag=2">第2章　解剖学</a></li><li><a  class="" title=第3章　运动学 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60902&Model=chapter&TypeMenuFlag=2">第3章　运动学</a></li><li><a  class="" title=第4章　生理学 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60903&Model=chapter&TypeMenuFlag=2">第4章　生理学</a></li><li><a  class="" title=第5章　神经生理学 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60904&Model=chapter&TypeMenuFlag=2">第5章　神经生理学</a></li><li><a  class="" title=第6章　人体发育学 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60905&Model=chapter&TypeMenuFlag=2">第6章　人体发育学</a></li><li><a  class="" title=第7章　物理学基础 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60906&Model=chapter&TypeMenuFlag=2">第7章　物理学基础</a></li><li><a  class="" title=第8章　心理学基础 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60907&Model=chapter&TypeMenuFlag=2">第8章　心理学基础</a></li><li><a  class="" title=第9章　微生物和免疫基础 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60908&Model=chapter&TypeMenuFlag=2">第9章　微生物和免疫基础</a></li><li><a  class="" title=第10章　医疗机构从业人员行为规范与医学伦理学 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60909&Model=chapter&TypeMenuFlag=2">第10章　医疗机构从业人员行为规范与医学伦理学</a></li></ul></li><li><span class="ulShow" onclick='showHide("item02",this)' style="cursor: pointer;">相关专业知识</span><ul id='item02' style=" display:block"><li><a  class="" title=第1章　影像学 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60910&Model=chapter&TypeMenuFlag=2">第1章　影像学</a></li><li><a  class="" title=第2章　临床检验 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60911&Model=chapter&TypeMenuFlag=2">第2章　临床检验</a></li><li><a  class="" title=第3章　药理基础 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60912&Model=chapter&TypeMenuFlag=2">第3章　药理基础</a></li><li><a  class="" title=第4章　外科疾病 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60913&Model=chapter&TypeMenuFlag=2">第4章　外科疾病</a></li><li><a  class="" title=第5章　骨科疾病 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60914&Model=chapter&TypeMenuFlag=2">第5章　骨科疾病</a></li><li><a  class="" title=第6章　神经疾病 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60915&Model=chapter&TypeMenuFlag=2">第6章　神经疾病</a></li><li><a  class="" title=第7章　内科疾病 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60916&Model=chapter&TypeMenuFlag=2">第7章　内科疾病</a></li><li><a  class="" title=第8章　儿科疾病 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60917&Model=chapter&TypeMenuFlag=2">第8章　儿科疾病</a></li><li><a  class="" title=第9章　其　他 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60918&Model=chapter&TypeMenuFlag=2">第9章　其　他</a></li><li><a  class="" title=第10章　肿　瘤 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60919&Model=chapter&TypeMenuFlag=2">第10章　肿　瘤</a></li></ul></li><li><span class="ulShow" onclick='showHide("item03",this)' style="cursor: pointer;">专业知识</span><ul id='item03' style=" display:block"><li><a  class="" title=第1章　康复评定基础 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60920&Model=chapter&TypeMenuFlag=2">第1章　康复评定基础</a></li><li><a  class="" title=第2章　康复治疗基础 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60921&Model=chapter&TypeMenuFlag=2">第2章　康复治疗基础</a></li><li><a  class="" title=第3章　外科疾病 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60922&Model=chapter&TypeMenuFlag=2">第3章　外科疾病</a></li><li><a  class="" title=第4章　骨科疾病 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60923&Model=chapter&TypeMenuFlag=2">第4章　骨科疾病</a></li><li><a  class="" title=第5章　神经疾病 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60924&Model=chapter&TypeMenuFlag=2">第5章　神经疾病</a></li><li><a  class="" title=第6章　内科疾病 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60925&Model=chapter&TypeMenuFlag=2">第6章　内科疾病</a></li><li><a  class="" title=第7章　儿科疾病 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60926&Model=chapter&TypeMenuFlag=2">第7章　儿科疾病</a></li><li><a  class="" title=第8章　其他疾病 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60927&Model=chapter&TypeMenuFlag=2">第8章　其他疾病</a></li><li><a  class="" title=第9章　功能障碍康复 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60928&Model=chapter&TypeMenuFlag=2">第9章　功能障碍康复</a></li><li><a  class="" title=第10章　癌症的康复 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60929&Model=chapter&TypeMenuFlag=2">第10章　癌症的康复</a></li></ul></li><li><span class="ulShow" onclick='showHide("item04",this)' style="cursor: pointer;">专业实践能力</span><ul id='item04' style=" display:block"><li><a  class="" title=第1章　体格检查 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60930&Model=chapter&TypeMenuFlag=2">第1章　体格检查</a></li><li><a  class="" title=第2章　物理治疗 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60931&Model=chapter&TypeMenuFlag=2">第2章　物理治疗</a></li><li><a  class="" title=第3章　作业治疗 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60932&Model=chapter&TypeMenuFlag=2">第3章　作业治疗</a></li><li><a  class="" title=第4章　言语治疗 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60933&Model=chapter&TypeMenuFlag=2">第4章　言语治疗</a></li><li><a  class="" title=第5章　心理治疗 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60934&Model=chapter&TypeMenuFlag=2">第5章　心理治疗</a></li><li><a  class="" title=第6章　中国传统治疗 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60935&Model=chapter&TypeMenuFlag=2">第6章　中国传统治疗</a></li><li><a  class="" title=第7章　康复工程 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60936&Model=chapter&TypeMenuFlag=2">第7章　康复工程</a></li><li><a  class="" title=第8章　其他治疗 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60937&Model=chapter&TypeMenuFlag=2">第8章　其他治疗</a></li><li><a  class="" title=第9章　电诊断 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60938&Model=chapter&TypeMenuFlag=2">第9章　电诊断</a></li><li><a  class="" title=第10章　运动能力评定 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60939&Model=chapter&TypeMenuFlag=2">第10章　运动能力评定</a></li><li><a  class="" title=第11章　平衡协调的评定 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60940&Model=chapter&TypeMenuFlag=2">第11章　平衡协调的评定</a></li><li><a  class="focus" title=第12章　心肺功能评定 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60941&Model=chapter&TypeMenuFlag=2">第12章　心肺功能评定</a></li><li><a  class="" title=第13章　人体运动分析 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60942&Model=chapter&TypeMenuFlag=2">第13章　人体运动分析</a></li><li><a  class="" title=第14章　感知认知评定 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60943&Model=chapter&TypeMenuFlag=2">第14章　感知认知评定</a></li><li><a  class="" title=第15章　言语吞咽评定 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60944&Model=chapter&TypeMenuFlag=2">第15章　言语吞咽评定</a></li><li><a  class="" title=第16章　日常生活活动能力和生存质量评定 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60945&Model=chapter&TypeMenuFlag=2">第16章　日常生活活动能力和生存质量评定</a></li><li><a  class="" title=第17章　癌症的康复 onclick="changePaper(this)" href="/PracticeCenter/Chapter/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60946&Model=chapter&TypeMenuFlag=2">第17章　癌症的康复</a></li></ul></li></ul></li>
+                    </ul>
+                    <li onclick="Chike('left_topk1',this)" style=" cursor:pointer;">
+                        <span class="ulShow">第二部分　模拟试题</span>
+                        </li>
+                    <ul id="left_topk1" >
+                        <li><a  class="" title=2016年康复医学技术（士）（基础知识）模拟试题及答案 onclick="changePaper(this)" href="/PracticeCenter/MockExam/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60947&Model=chapter&TypeMenuFlag=3">2016年康复医学技术（士）（基础知识）模拟试题及答案</a></li><li><a  class="" title=2016年康复医学技术（士）（相关专业知识）模拟试题及答案 onclick="changePaper(this)" href="/PracticeCenter/MockExam/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60948&Model=chapter&TypeMenuFlag=3">2016年康复医学技术（士）（相关专业知识）模拟试题及答案</a></li><li><a  class="" title=2016年康复医学技术（士）（专业知识）模拟试题及答案 onclick="changePaper(this)" href="/PracticeCenter/MockExam/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60949&Model=chapter&TypeMenuFlag=3">2016年康复医学技术（士）（专业知识）模拟试题及答案</a></li><li><a  class="" title=2016年康复医学技术（士）（专业实践能力）模拟试题及答案 onclick="changePaper(this)" href="/PracticeCenter/MockExam/Index?TQuestionPlanID=2554&groupName=&code=&tb_l_PaperQuePlanID=60950&Model=chapter&TypeMenuFlag=3">2016年康复医学技术（士）（专业实践能力）模拟试题及答案</a></li>
+                    </ul>
+            </ul>
+            <input type="hidden" id="HidCler" value="left_topk0" />
+        </div>
+    </div>
+</div>
+
+
+        <!--试题反馈-->
+        <div id="feedback" style="display: none; border: solid 1px #007371; background: #fff;
+    width: 400px; z-index: 1001; height: 270px; position: absolute; top: 50%; left: 50%;
+    margin-left: -200px; margin-top: -125px;">
+    <div class="close">
+        <span class="thicktitle">反馈给我们</span> <span class="colseleft">
+            <input type="button" name="clo" value="" class="closelog" onclick="return ShowNof()" />&nbsp;</span></div>
+    <div class="fankkuil">
+        <table cellpadding="2" cellspacing="1" border="0" bgcolor="#d5d5d5">
+            <tr bgcolor="#ffffff">
+                <td class="fan_left">
+                    试题编号
+                </td>
+                <td class="fan_righthao">
+                </td>
+            </tr>
+            <tr bgcolor="#ffffff">
+                <td class="fan_left1">
+                    反馈内容
+                </td>
+                <td class="fan_right">
+                    <textarea class="fedbackarea" cols="5" id="fedbackareaControls" onblur="Clert()"
+                        onfocus="Focer()" style="color: #A7A7A7;" rows="5">请在此输入您要反馈的内容，比如：答案错误、解析不妥等等，我们将尽快处理，谢谢您的支持！</textarea>
+                </td>
+            </tr>
+            <tfoot>
+                <tr bgcolor="#ffffff">
+                    <td colspan="2" style="text-align: center;">
+                        <input type="button" value="确定" class="btnarea" />
+                        <input type="hidden" id="FeedBack" value="请在此输入您要反馈的内容，比如：答案错误、解析不妥等等，我们将尽快处理，谢谢您的支持！" />
+                    </td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+</div>
+<script type="text/javascript">
+    function ShowNof() {
+        $("#feedback").hide();
+       
+        $("#fedbackareaControls").val("请在此输入您要反馈的内容，比如：答案错误、解析不妥等等，我们将尽快处理，谢谢您的支持！");
+        $("#fedbackareaControls").css("color", "#DBDBDB"); //灰
+    }
+    function Clert() {//失去焦点
+        var Content = $("#fedbackareaControls").val();
+        var item = $("#FeedBack").val();
+        if (Content == null || Content == "") {
+            $("#fedbackareaControls").val(item);
+            $("#fedbackareaControls").css("color", "#DBDBDB"); //灰
+        }
+    }
+    function Focer() {//获取焦点
+        var item = $("#FeedBack").val();
+        var Content = $("#fedbackareaControls").val();
+        if (Content == item) {
+            $("#fedbackareaControls").val("");
+            $("#fedbackareaControls").css("color", "#000000"); //黑
+        }
+    }
+</script>
+
+        <!--时间设置-->
+        <div id="timeset" style="display: none; border: solid 1px #007371; background: #f1f6fa;
+    width: 450px; z-index: 1001; height: 180px; position: absolute; top: 50%; left: 50%;
+    margin-left: -200px; margin-top: -125px;">
+    <div class="close">
+        <span class="thicktitle">考试时间设置</span> <span class="colseleft">
+            <input type="button" name="clo" value="" class="closelog" onclick="return ShowData()" /></span></div>
+    <div class="time_content">
+        <div class="time_content_left">
+            <img src="/Content/ImagesX/clock.jpg" />
+        </div>
+        <div class="time_content_right">
+            <h3>
+                请在此设置准确的考试时间</h3>
+            考试时间：<input onclick="WdatePicker()" name="EndDate" class="time_text" type="text" value="" />
+        </div>
+    </div>
+    <div class="time_btn">
+        <input id="examdata" type="button" class="button4" value="确定" />&nbsp;<input type="button"
+            class="button4" onclick="return ShowData()" value="取消" /></div>
+</div>
+        <!--底部菜单-->
+<input type="hidden" id="tb_l_PaperQuePlanIDtypess" value="60941" />
+    <input type="hidden" id="isThirdWebSite" value="0" />
+<input id="buyUrl" type="hidden" value="" />
+<input type="hidden" id="HidUserInfor" value="" />
+<input type="hidden" id="PackageId" name="PackageId" value=""/>
+<div id="bottom" class="Bot" style="z-index: 9999">
+    <div class="Logo">
+            <a href="http://tk.100xuexi.com" target="_blank">
+                <img src="/Content/images/logo.png" id="headlogo" alt="圣才题库" />
+            </a>
+    </div>
+    <script>
+        function ReturnHandler(title, checkLogon, checkUrl, url) {
+            var testOver = document.getElementById("over");
+            if (testOver != null && testOver.tested && !testOver.saved) {
+                var msg = "是否要结束练习并" + title + "吗？";
+                if (!confirm(msg)) return;
+            }
+            if (!checkLogon || isUserLogon()) {
+                if (testOver != null && !testOver.saved) {
+                    saveTest(false);
+                }
+                if (checkUrl) url += "?code=" + $("#code").val() + "&groupName=" + $("#groupName").val() + "&TQuestionPlanID=" + $("#TQuestionPlanID").val() + "&tb_l_PaperQuePlanID=" + $("#tb_l_PaperQuePlanIDtypess").val() + "";
+                window.location.href = url;
+            }
+            else {
+                if (checkUrl) url += "?code=" + $("#code").val() + "||||groupName=" + $("#groupName").val() + "||||TQuestionPlanID=" + $("#TQuestionPlanID").val() + "||||tb_l_PaperQuePlanID=" + $("#tb_l_PaperQuePlanIDtypess").val() + "";
+                window.location.href = "http://tk.100xuexi.com/Member/loginAndReg.aspx?BackUrl=" + url;
+            }
+        }
+    </script>
+    <div class="MainNav">
+        <ul>
+            <li>
+                <a href="javascript:void(0)" onclick="ReturnHandler('返回封面', false, false, '/PracticeCenter/Directory/Index?IsShowFlex=1&tb_l_PaperQuePlanID=60941&code=&groupName=&TQuestionPlanID=2554')" class="nav1">
+                    <span>返回封面</span>
+                </a>
+            </li>
+            <li class="Line"></li>
+            <li>
+                <a href="javascript:void(0)" onclick="ReturnHandler('题库目录', false, false, '/PracticeCenter/Directory/Index?IsShowFlex=0&tb_l_PaperQuePlanID=60941&code=&groupName=&TQuestionPlanID=2554')" class="nav1">
+                    <span>题库目录</span>
+                </a>
+            </li>
+            <li class="Line"></li>
+            <li>
+                <a href="javascript:void(0)" class="BtnSearch">
+                    <span>搜索试题</span>
+                </a>
+            </li>
+            <li class="Line"></li>
+            <li>
+                <a href="javascript:void(0)" onclick="ReturnHandler('我的收藏', true, true, '/PracticeCenter/Favourites/Index')">
+                    <span>我的收藏</span>
+                </a>
+            </li>
+            <li>
+                <a href="javascript:void(0)" onclick="ReturnHandler('学习记录', true, true, '/PracticeCenter/UserRecord/Index')">
+                    <span>学习记录</span>
+                </a>
+            </li>
+            <li class="Line"></li>
+            <li>
+                <a href="javascript:void(0)" onclick="ReturnHandler('成绩统计', true, true, '/PracticeCenter/PageJump/PerformanceStatistics')">
+                    <span>成绩统计</span>
+                </a>
+            </li>
+            <li class="Line"></li>
+            <li>
+                <a href="javascript:void(0)" onclick="ReturnHandler('错题重做', true, true, '/PracticeCenter/Wrong/Index')">
+                    <span>错题重做</span>
+                </a>
+            </li>
+            <li class="Line"></li>
+            <li>
+                <a href="#WBSettings#">
+                    <span>卷面设置</span>
+                </a>
+            </li>
+            <li class="Line"></li>
+                <li>
+                    <a href="#BuyOnline#" class="BtnBuy">
+                        <span>题库购买</span>
+                    </a>
+                </li>
+        </ul>
+    </div>
+</div>
+
+
+        <div id="content" class="PageBody">
+            <!--主体右部-->
+<div class="right">
+    <div class="right_top">
+        <table class="right_top_table">
+            <tr>
+                <td style="text-align: center;">
+                    <h1>
+                        第12章　心肺功能评定
+                    </h1>
+                </td>
+                
+            </tr>
+        </table>
+        <input id="hidTQPID0" type="hidden" value="2554" />
+        <input id="hidPID0" type="hidden" value="3b1a1ff5-d08d-4ae6-97b9-f6a24b3059fb" />
+        <input id="hidPIQID0" type="hidden" value="60941" />
+
+        <input id="hidPName0" type="hidden" value="第12章　心肺功能评定" />
+        <input id="hidUName0" type="hidden" value="" />
+        <input id="hidARID" type="hidden" value="" />
+        <input id="hidTypeName" type="hidden" value="章节练习" />
+        <a class="header_Cler2" id="header_Cler" title="导航栏" style="display: none;">
+            <!-- <img src="/Content/ImagesX/btnToBot.gif" id="header_Cler_img" />-->
+        </a>
+    </div>
+    <div class="right_xia" id="exam">
+        <!--主体-->
+<input type="hidden" name="TPaperID" value="3b1a1ff5-d08d-4ae6-97b9-f6a24b3059fb" />
+<!--主体-->
+  <div id="loading" style="  z-index: 1001; height: 66px; width: 66px; text-align: center; position: absolute; top: 50%; left: 50%; margin-left: -33px; margin-top: -33px;">
+        <img src="/Content/images/busy.gif" alt="数据加载中..." />
+    </div>
+
+<style type="text/css">
+    .flexclose {
+        filter: alpha(opacity=0);
+        -moz-opacity: 0;
+        -khtml-opacity: 0;
+        opacity: 0;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 0.5px;
+        z-index: 99999;
+        background-color: #ffffff;
+    }
+    .flexopen {
+        filter: alpha(opacity=100);
+        -moz-opacity: 100;
+        -khtml-opacity: 100;
+        opacity: 100;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        bottom: 0px;
+        width: 100%;
+        height: 100%;
+        z-index: 99999;
+        background-color: #ffffff;
+    }
+</style>
+<script type="text/javascript">
+
+    $(function () {
+        //加载动画
+        $("#loading").css("display", "");
+        
+    })
+</script>
+<div id="flex"  class="flexclose">
+
+    <style type="text/css" media="screen">
+        object:focus {
+            outline: none;
+        }
+
+        #flashContent {
+            display: none;
+        }
+    </style>
+
+    <script type="text/javascript" src="/tikud/swfobject.js"></script>
+    <script type="text/javascript">
+       
+
+       
+        var isPlay = 0;
+
+        //3d播放
+        function onClick3dButton(seconds) {
+
+            videoPlayer.pauseVideo();
+            playerVideo($("#videoUrl").val(), 'http://admintk.100xuexi.com/upload/BigPic/201601041737054296.jpg', $("#videotitle").val(), seconds);
+
+        }
+        function setVideoInfo(splashUrl, title)//设置视频的封面地址和标题   (播放时调用)
+        {
+            tkBook.setVideoInfo(splashUrl, title);
+        }
+        function setVideoSource(url, seconds) {
+            tkBook.setVideoSource(url, sencond);
+        }
+        function setVideoSize(width, height) {
+            tkBook.setVideoSize("800", "600");
+        }
+
+        function playerVideo(videoUrl, splashUrl, title, seconds) {
+
+            if (isPlay == 1) {
+                $("#flex").removeClass("flexclose");
+                $("#flex").addClass("flexopen");
+                $("#windown-box").css("visibility", 'hidden');
+                try {
+                    tkBook.setVideoInfo(splashUrl, title);
+                    tkBook.setVideoSource(videoUrl, seconds);
+                } catch (e) {
+                    alert(e);
+                }
+            }
+            else {
+                alert("正在加载数据......");
+            }
+        }
+
+        function setPageInfo(firstUrl, lastUrl) {
+            tkBook.setPageInfo(firstUrl, lastUrl);
+        }
+        function onClose3dVideo(seconds) {
+           
+
+
+
+
+            $("#flex").removeClass("flexopen");
+            $("#flex").addClass("flexclose");
+            $("#windown-box").css("visibility", 'visible');
+            gotoFrame1(seconds);
+        }
+
+
+        function onInitReady() {
+            setPageInfo("http://admintk.100xuexi.com/upload/BigPic/201601041737054296.jpg", "http://admintk.100xuexi.com/upload/BigPic/201601041737054296.jpg");
+        }
+
+        function onBookDbClick() {
+            $("#flex").removeClass("flexopen");
+            $("#flex").addClass("flexclose");
+            $("#windown-box").css("visibility", 'visible');
+            gotoFrame1(seconds);
+        }
+        //是否加载
+        function onPageReady() {
+            isPlay = 1;
+        }
+        var swfUrl = "/tikud/tkBook3D.swf";
+        var urlParam = getRequestParam("isInContainer");
+        if (urlParam == "true")
+            swfUrl = "/tikud/tkBook3D.swf?isInContainer=true";
+        var swfVersionStr = "11.1.0";
+        var xiSwfUrlStr = "/tikud/playerProductInstall.swf";
+        var flashvars = {};
+        var params = {};
+        params.quality = "high";
+        params.bgcolor = "#ffffff";
+        params.allowscriptaccess = "*";
+        params.allowfullscreen = "true";
+        params.wmode = "transparent";
+        var attributes = {};
+        attributes.id = "tkBook";
+        attributes.name = "tkBook";
+        attributes.align = "middle";
+        swfobject.embedSWF(swfUrl
+            , "flashContent",
+                "100%", "100%",
+                swfVersionStr, xiSwfUrlStr,
+                flashvars, params, attributes);
+        // JavaScript enabled so display the flashContent div in case it is not replaced with a swf object.
+        swfobject.createCSS("#flashContent", "display:block;width:100%;height:100%;");
+    </script>
+    <div id="flashContent">
+        <p>
+            To view this page ensure that Adobe Flash Player version 
+                11.1.0 or greater is installed. 
+        </p>
+        <script type="text/javascript">
+            var pageHost = ((document.location.protocol == "https:") ? "https://" : "http://");
+            document.write("<a href='http://www.adobe.com/go/getflashplayer'><img src='"
+                            + pageHost + "www.adobe.com/images/shared/download_buttons/get_flash_player.gif' alt='Get Adobe Flash player' /></a>");
+        </script>
+    </div>
+
+
+</div>
+<div class="main_model">
+    <a name="#head"></a>
+    <div id="list" class="RightCon01 config">
+        <div class="ScrollContent yyssee config">
+            <h1>
+                第12章　心肺功能评定<span class="exitscree" style="float: right; color: #333333;"></span>
+            </h1>
+
+                <div class="nodeItem" id="0">
+                    <h4 style="display: none;">0</h4>
+                    <h5 style="display: none;">A1/A2型题</h5>
+                    <div class="DispalClick" style="padding-bottom: 10px; cursor: pointer;" onclick="DisplayToggle(this)">
+                            <h2>一、A1/A2型题</h2>
+                    </div>
+                    
+<div class="Item config">
+    <a name="021074209-2188-433f-905a-877913e0d75b"></a>
+    <input type="hidden" name="txtScore" value="1.00" />
+    <input type="hidden" name="daan" value="D-ABC-D-A-B-BACAD" />
+    <div  id="21074209-2188-433f-905a-877913e0d75b" class="question config" number="EE312755">
+        <dl>
+            
+            <dt>
+1. 常规心电图不可能直接反映（　　）。</dt>
+            <dd>
+                <table style="width: 100%">
+                    <input type="hidden" name="myAnsw" value="" />
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'A','single')" name="21074209-2188-433f-905a-877913e0d75b" for="singlelimit21074209-2188-433f-905a-877913e0d75b65" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit21074209-2188-433f-905a-877913e0d75b65" name="21074209-2188-433f-905a-877913e0d75b" value="A" />
+                                    A．
+                                    心律
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'B','single')" name="21074209-2188-433f-905a-877913e0d75b" for="singlelimit21074209-2188-433f-905a-877913e0d75b66" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit21074209-2188-433f-905a-877913e0d75b66" name="21074209-2188-433f-905a-877913e0d75b" value="B" />
+                                    B．
+                                    心率
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'C','single')" name="21074209-2188-433f-905a-877913e0d75b" for="singlelimit21074209-2188-433f-905a-877913e0d75b67" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit21074209-2188-433f-905a-877913e0d75b67" name="21074209-2188-433f-905a-877913e0d75b" value="C" />
+                                    C．
+                                    心肌肥大
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'D','single')" name="21074209-2188-433f-905a-877913e0d75b" for="singlelimit21074209-2188-433f-905a-877913e0d75b68" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit21074209-2188-433f-905a-877913e0d75b68" name="21074209-2188-433f-905a-877913e0d75b" value="D" />
+                                    D．
+                                    运动能力
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'E','single')" name="21074209-2188-433f-905a-877913e0d75b" for="singlelimit21074209-2188-433f-905a-877913e0d75b69" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit21074209-2188-433f-905a-877913e0d75b69" name="21074209-2188-433f-905a-877913e0d75b" value="E" />
+                                    E．
+                                    心肌缺血
+
+                                </label>
+                            </td>
+                        </tr>   
+                </table>
+            </dd>
+        </dl>
+    </div>
+        <div class="ItemBot">
+            <div class="opt" style="display: none; float: left;">
+                    <input type="button" class="before" value="上一题" ViewShow="True" PraticeShow="True" />
+                    <input type="button" class="next" value="下一题" ViewShow="True" PraticeShow="True" />
+            </div>
+            <div class="toolBar1">
+                <input type="hidden" class="TitleVideo" value="" />
+                    <a  class="btn showAns" id="2" href="#"  alter="隐藏答案" ViewShow="True" PraticeShow="True" >查看答案</a>
+                    <a  class="btn_NOVideo collect" id="2" href="#"  alter="取消收藏" ViewShow="True" PraticeShow="True" >收藏</a>
+                    <a name="mark"  class="btn_NOVideo mark" id="2" href="#" alter="取消标记" ViewShow="True" PraticeShow="True" >标记</a>
+                    <a  class="btn_NOVideo feedback" id="2" href="#"  alter="已反馈" ViewShow="True" PraticeShow="True" >反馈</a>
+            </div>
+            <div class="config answer" style="display: none">
+                <table class="HiddenStart">
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【答案】
+                                </div>
+                                <div class="anser Con">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【解析】
+                                </div>
+                                <div class="analysits Con">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="ShowStart">
+    <tr>
+        <td>
+            <span style="color: #FF0000;">提示：</span>
+            查看答案、解析，请先<a href="javascript:void(0)" onclick="BuyPlan()">购买>></a>
+                如已购买，请<a href="javascript:void(0)" onclick="loginTo('http://tk.100xuexi.com/Member/loginAndReg.aspx?BackUrl=http://usertk.100xuexi.com:80/PracticeCenter/Chapter/Index?tb_l_PaperQuePlanID=60941||||code=||||TypeMenuFlag=2||||TQuestionPlanID=2554||||Model=chapter||||GroupUserName=')">立即登录>></a>
+                如已获得激活密码，请<a href="javascript:void(0)" class="BtnBuy" onclick="onlineActivating(&#39;&#39;)">立即激活>></a>
+        </td>
+    </tr>
+</table>
+ 
+            </div>
+            <div class="area" style="display: none">
+                <div>
+                    <textarea class="fedbackarea" cols="5" rows="5"></textarea>
+                </div>
+                <div style="margin: 0 auto; width: 68px;">
+                    <input type="button" value="确定" class="btnarea" />
+                </div>
+            </div>
+            <div class="videoshow" style="display: none">
+            </div>
+        </div>
+</div>
+
+<div class="Item config">
+    <a name="09d132f9f-66d9-4e5f-95c3-3a242ce66ede"></a>
+    <input type="hidden" name="txtScore" value="1.00" />
+    <input type="hidden" name="daan" value="A-ABC-D-A-B-BACAD" />
+    <div  id="9d132f9f-66d9-4e5f-95c3-3a242ce66ede" class="question config" number="EE312756">
+        <dl>
+            
+            <dt>
+2. 肺活量是指（　　）。</dt>
+            <dd>
+                <table style="width: 100%">
+                    <input type="hidden" name="myAnsw" value="" />
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'A','single')" name="9d132f9f-66d9-4e5f-95c3-3a242ce66ede" for="singlelimit9d132f9f-66d9-4e5f-95c3-3a242ce66ede65" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit9d132f9f-66d9-4e5f-95c3-3a242ce66ede65" name="9d132f9f-66d9-4e5f-95c3-3a242ce66ede" value="A" />
+                                    A．
+                                    深吸气后作最大呼气所呼出的气量
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'B','single')" name="9d132f9f-66d9-4e5f-95c3-3a242ce66ede" for="singlelimit9d132f9f-66d9-4e5f-95c3-3a242ce66ede66" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit9d132f9f-66d9-4e5f-95c3-3a242ce66ede66" name="9d132f9f-66d9-4e5f-95c3-3a242ce66ede" value="B" />
+                                    B．
+                                    平静吸气后作最大呼气所呼出的气量
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'C','single')" name="9d132f9f-66d9-4e5f-95c3-3a242ce66ede" for="singlelimit9d132f9f-66d9-4e5f-95c3-3a242ce66ede67" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit9d132f9f-66d9-4e5f-95c3-3a242ce66ede67" name="9d132f9f-66d9-4e5f-95c3-3a242ce66ede" value="C" />
+                                    C．
+                                    深吸气后作随意呼气所呼出的气量
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'D','single')" name="9d132f9f-66d9-4e5f-95c3-3a242ce66ede" for="singlelimit9d132f9f-66d9-4e5f-95c3-3a242ce66ede68" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit9d132f9f-66d9-4e5f-95c3-3a242ce66ede68" name="9d132f9f-66d9-4e5f-95c3-3a242ce66ede" value="D" />
+                                    D．
+                                    平静吸气后作平静呼气所呼出的气量
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'E','single')" name="9d132f9f-66d9-4e5f-95c3-3a242ce66ede" for="singlelimit9d132f9f-66d9-4e5f-95c3-3a242ce66ede69" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit9d132f9f-66d9-4e5f-95c3-3a242ce66ede69" name="9d132f9f-66d9-4e5f-95c3-3a242ce66ede" value="E" />
+                                    E．
+                                    深吸气后作平静呼气所呼出的气量
+
+                                </label>
+                            </td>
+                        </tr>   
+                </table>
+            </dd>
+        </dl>
+    </div>
+        <div class="ItemBot">
+            <div class="opt" style="display: none; float: left;">
+                    <input type="button" class="before" value="上一题" ViewShow="True" PraticeShow="True" />
+                    <input type="button" class="next" value="下一题" ViewShow="True" PraticeShow="True" />
+            </div>
+            <div class="toolBar1">
+                <input type="hidden" class="TitleVideo" value="" />
+                    <a  class="btn showAns" id="2" href="#"  alter="隐藏答案" ViewShow="True" PraticeShow="True" >查看答案</a>
+                    <a  class="btn_NOVideo collect" id="2" href="#"  alter="取消收藏" ViewShow="True" PraticeShow="True" >收藏</a>
+                    <a name="mark"  class="btn_NOVideo mark" id="2" href="#" alter="取消标记" ViewShow="True" PraticeShow="True" >标记</a>
+                    <a  class="btn_NOVideo feedback" id="2" href="#"  alter="已反馈" ViewShow="True" PraticeShow="True" >反馈</a>
+            </div>
+            <div class="config answer" style="display: none">
+                <table class="HiddenStart">
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【答案】
+                                </div>
+                                <div class="anser Con">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【解析】
+                                </div>
+                                <div class="analysits Con">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="ShowStart">
+    <tr>
+        <td>
+            <span style="color: #FF0000;">提示：</span>
+            查看答案、解析，请先<a href="javascript:void(0)" onclick="BuyPlan()">购买>></a>
+                如已购买，请<a href="javascript:void(0)" onclick="loginTo('http://tk.100xuexi.com/Member/loginAndReg.aspx?BackUrl=http://usertk.100xuexi.com:80/PracticeCenter/Chapter/Index?tb_l_PaperQuePlanID=60941||||code=||||TypeMenuFlag=2||||TQuestionPlanID=2554||||Model=chapter||||GroupUserName=')">立即登录>></a>
+                如已获得激活密码，请<a href="javascript:void(0)" class="BtnBuy" onclick="onlineActivating(&#39;&#39;)">立即激活>></a>
+        </td>
+    </tr>
+</table>
+ 
+            </div>
+            <div class="area" style="display: none">
+                <div>
+                    <textarea class="fedbackarea" cols="5" rows="5"></textarea>
+                </div>
+                <div style="margin: 0 auto; width: 68px;">
+                    <input type="button" value="确定" class="btnarea" />
+                </div>
+            </div>
+            <div class="videoshow" style="display: none">
+            </div>
+        </div>
+</div>
+
+<div class="Item config">
+    <a name="01e0531af-ff52-49f3-a0f3-591f27e8af7c"></a>
+    <input type="hidden" name="txtScore" value="1.00" />
+    <input type="hidden" name="daan" value="D-ABC-D-A-B-BACAD" />
+    <div  id="1e0531af-ff52-49f3-a0f3-591f27e8af7c" class="question config" number="EE312757">
+        <dl>
+            
+            <dt>
+3. 呼吸康复评定中，最多见和最重要的疾病是（　　）。</dt>
+            <dd>
+                <table style="width: 100%">
+                    <input type="hidden" name="myAnsw" value="" />
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'A','single')" name="1e0531af-ff52-49f3-a0f3-591f27e8af7c" for="singlelimit1e0531af-ff52-49f3-a0f3-591f27e8af7c65" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit1e0531af-ff52-49f3-a0f3-591f27e8af7c65" name="1e0531af-ff52-49f3-a0f3-591f27e8af7c" value="A" />
+                                    A．
+                                    肺间质纤维化
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'B','single')" name="1e0531af-ff52-49f3-a0f3-591f27e8af7c" for="singlelimit1e0531af-ff52-49f3-a0f3-591f27e8af7c66" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit1e0531af-ff52-49f3-a0f3-591f27e8af7c66" name="1e0531af-ff52-49f3-a0f3-591f27e8af7c" value="B" />
+                                    B．
+                                    陈旧性肺结核
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'C','single')" name="1e0531af-ff52-49f3-a0f3-591f27e8af7c" for="singlelimit1e0531af-ff52-49f3-a0f3-591f27e8af7c67" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit1e0531af-ff52-49f3-a0f3-591f27e8af7c67" name="1e0531af-ff52-49f3-a0f3-591f27e8af7c" value="C" />
+                                    C．
+                                    慢性限制性通气功能障碍
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'D','single')" name="1e0531af-ff52-49f3-a0f3-591f27e8af7c" for="singlelimit1e0531af-ff52-49f3-a0f3-591f27e8af7c68" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit1e0531af-ff52-49f3-a0f3-591f27e8af7c68" name="1e0531af-ff52-49f3-a0f3-591f27e8af7c" value="D" />
+                                    D．
+                                    慢性阻塞性通气功能障碍
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'E','single')" name="1e0531af-ff52-49f3-a0f3-591f27e8af7c" for="singlelimit1e0531af-ff52-49f3-a0f3-591f27e8af7c69" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit1e0531af-ff52-49f3-a0f3-591f27e8af7c69" name="1e0531af-ff52-49f3-a0f3-591f27e8af7c" value="E" />
+                                    E．
+                                    肺脓疡
+
+                                </label>
+                            </td>
+                        </tr>   
+                </table>
+            </dd>
+        </dl>
+    </div>
+        <div class="ItemBot">
+            <div class="opt" style="display: none; float: left;">
+                    <input type="button" class="before" value="上一题" ViewShow="True" PraticeShow="True" />
+                    <input type="button" class="next" value="下一题" ViewShow="True" PraticeShow="True" />
+            </div>
+            <div class="toolBar1">
+                <input type="hidden" class="TitleVideo" value="" />
+                    <a  class="btn showAns" id="2" href="#"  alter="隐藏答案" ViewShow="True" PraticeShow="True" >查看答案</a>
+                    <a  class="btn_NOVideo collect" id="2" href="#"  alter="取消收藏" ViewShow="True" PraticeShow="True" >收藏</a>
+                    <a name="mark"  class="btn_NOVideo mark" id="2" href="#" alter="取消标记" ViewShow="True" PraticeShow="True" >标记</a>
+                    <a  class="btn_NOVideo feedback" id="2" href="#"  alter="已反馈" ViewShow="True" PraticeShow="True" >反馈</a>
+            </div>
+            <div class="config answer" style="display: none">
+                <table class="HiddenStart">
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【答案】
+                                </div>
+                                <div class="anser Con">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【解析】
+                                </div>
+                                <div class="analysits Con">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="ShowStart">
+    <tr>
+        <td>
+            <span style="color: #FF0000;">提示：</span>
+            查看答案、解析，请先<a href="javascript:void(0)" onclick="BuyPlan()">购买>></a>
+                如已购买，请<a href="javascript:void(0)" onclick="loginTo('http://tk.100xuexi.com/Member/loginAndReg.aspx?BackUrl=http://usertk.100xuexi.com:80/PracticeCenter/Chapter/Index?tb_l_PaperQuePlanID=60941||||code=||||TypeMenuFlag=2||||TQuestionPlanID=2554||||Model=chapter||||GroupUserName=')">立即登录>></a>
+                如已获得激活密码，请<a href="javascript:void(0)" class="BtnBuy" onclick="onlineActivating(&#39;&#39;)">立即激活>></a>
+        </td>
+    </tr>
+</table>
+ 
+            </div>
+            <div class="area" style="display: none">
+                <div>
+                    <textarea class="fedbackarea" cols="5" rows="5"></textarea>
+                </div>
+                <div style="margin: 0 auto; width: 68px;">
+                    <input type="button" value="确定" class="btnarea" />
+                </div>
+            </div>
+            <div class="videoshow" style="display: none">
+            </div>
+        </div>
+</div>
+
+<div class="Item config">
+    <a name="03b0f03fb-0824-4cd1-8c75-9bd12054ff9b"></a>
+    <input type="hidden" name="txtScore" value="1.00" />
+    <input type="hidden" name="daan" value="B-ABC-D-A-B-BACAD" />
+    <div  id="3b0f03fb-0824-4cd1-8c75-9bd12054ff9b" class="question config" number="EE312758">
+        <dl>
+            
+            <dt>
+4. 以下哪一项肺功能检查属于动态肺容量？（　　）</dt>
+            <dd>
+                <table style="width: 100%">
+                    <input type="hidden" name="myAnsw" value="" />
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'A','single')" name="3b0f03fb-0824-4cd1-8c75-9bd12054ff9b" for="singlelimit3b0f03fb-0824-4cd1-8c75-9bd12054ff9b65" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit3b0f03fb-0824-4cd1-8c75-9bd12054ff9b65" name="3b0f03fb-0824-4cd1-8c75-9bd12054ff9b" value="A" />
+                                    A．
+                                    肺活量
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'B','single')" name="3b0f03fb-0824-4cd1-8c75-9bd12054ff9b" for="singlelimit3b0f03fb-0824-4cd1-8c75-9bd12054ff9b66" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit3b0f03fb-0824-4cd1-8c75-9bd12054ff9b66" name="3b0f03fb-0824-4cd1-8c75-9bd12054ff9b" value="B" />
+                                    B．
+                                    最大通气量
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'C','single')" name="3b0f03fb-0824-4cd1-8c75-9bd12054ff9b" for="singlelimit3b0f03fb-0824-4cd1-8c75-9bd12054ff9b67" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit3b0f03fb-0824-4cd1-8c75-9bd12054ff9b67" name="3b0f03fb-0824-4cd1-8c75-9bd12054ff9b" value="C" />
+                                    C．
+                                    潮气量
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'D','single')" name="3b0f03fb-0824-4cd1-8c75-9bd12054ff9b" for="singlelimit3b0f03fb-0824-4cd1-8c75-9bd12054ff9b68" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit3b0f03fb-0824-4cd1-8c75-9bd12054ff9b68" name="3b0f03fb-0824-4cd1-8c75-9bd12054ff9b" value="D" />
+                                    D．
+                                    功能残气量
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'E','single')" name="3b0f03fb-0824-4cd1-8c75-9bd12054ff9b" for="singlelimit3b0f03fb-0824-4cd1-8c75-9bd12054ff9b69" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit3b0f03fb-0824-4cd1-8c75-9bd12054ff9b69" name="3b0f03fb-0824-4cd1-8c75-9bd12054ff9b" value="E" />
+                                    E．
+                                    肺总量
+
+                                </label>
+                            </td>
+                        </tr>   
+                </table>
+            </dd>
+        </dl>
+    </div>
+        <div class="ItemBot">
+            <div class="opt" style="display: none; float: left;">
+                    <input type="button" class="before" value="上一题" ViewShow="True" PraticeShow="True" />
+                    <input type="button" class="next" value="下一题" ViewShow="True" PraticeShow="True" />
+            </div>
+            <div class="toolBar1">
+                <input type="hidden" class="TitleVideo" value="" />
+                    <a  class="btn showAns" id="2" href="#"  alter="隐藏答案" ViewShow="True" PraticeShow="True" >查看答案</a>
+                    <a  class="btn_NOVideo collect" id="2" href="#"  alter="取消收藏" ViewShow="True" PraticeShow="True" >收藏</a>
+                    <a name="mark"  class="btn_NOVideo mark" id="2" href="#" alter="取消标记" ViewShow="True" PraticeShow="True" >标记</a>
+                    <a  class="btn_NOVideo feedback" id="2" href="#"  alter="已反馈" ViewShow="True" PraticeShow="True" >反馈</a>
+            </div>
+            <div class="config answer" style="display: none">
+                <table class="HiddenStart">
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【答案】
+                                </div>
+                                <div class="anser Con">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【解析】
+                                </div>
+                                <div class="analysits Con">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="ShowStart">
+    <tr>
+        <td>
+            <span style="color: #FF0000;">提示：</span>
+            查看答案、解析，请先<a href="javascript:void(0)" onclick="BuyPlan()">购买>></a>
+                如已购买，请<a href="javascript:void(0)" onclick="loginTo('http://tk.100xuexi.com/Member/loginAndReg.aspx?BackUrl=http://usertk.100xuexi.com:80/PracticeCenter/Chapter/Index?tb_l_PaperQuePlanID=60941||||code=||||TypeMenuFlag=2||||TQuestionPlanID=2554||||Model=chapter||||GroupUserName=')">立即登录>></a>
+                如已获得激活密码，请<a href="javascript:void(0)" class="BtnBuy" onclick="onlineActivating(&#39;&#39;)">立即激活>></a>
+        </td>
+    </tr>
+</table>
+ 
+            </div>
+            <div class="area" style="display: none">
+                <div>
+                    <textarea class="fedbackarea" cols="5" rows="5"></textarea>
+                </div>
+                <div style="margin: 0 auto; width: 68px;">
+                    <input type="button" value="确定" class="btnarea" />
+                </div>
+            </div>
+            <div class="videoshow" style="display: none">
+            </div>
+        </div>
+</div>
+
+<div class="Item config">
+    <a name="0dfff6fda-77c0-41be-82e7-d344229c9586"></a>
+    <input type="hidden" name="txtScore" value="1.00" />
+    <input type="hidden" name="daan" value="D-ABC-D-A-B-BACAD" />
+    <div  id="dfff6fda-77c0-41be-82e7-d344229c9586" class="question config" number="EE312759">
+        <dl>
+            
+            <dt>
+5. 心脏病患者进行活动平板运动试验，确定运动处方时，下列哪一项为最适宜的运动强度？（　　）</dt>
+            <dd>
+                <table style="width: 100%">
+                    <input type="hidden" name="myAnsw" value="" />
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'A','single')" name="dfff6fda-77c0-41be-82e7-d344229c9586" for="singlelimitdfff6fda-77c0-41be-82e7-d344229c958665" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimitdfff6fda-77c0-41be-82e7-d344229c958665" name="dfff6fda-77c0-41be-82e7-d344229c9586" value="A" />
+                                    A．
+                                    按年龄允许达到的最高心率乘以40％
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'B','single')" name="dfff6fda-77c0-41be-82e7-d344229c9586" for="singlelimitdfff6fda-77c0-41be-82e7-d344229c958666" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimitdfff6fda-77c0-41be-82e7-d344229c958666" name="dfff6fda-77c0-41be-82e7-d344229c9586" value="B" />
+                                    B．
+                                    患者出现症状时的心率乘以40％
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'C','single')" name="dfff6fda-77c0-41be-82e7-d344229c9586" for="singlelimitdfff6fda-77c0-41be-82e7-d344229c958667" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimitdfff6fda-77c0-41be-82e7-d344229c958667" name="dfff6fda-77c0-41be-82e7-d344229c9586" value="C" />
+                                    C．
+                                    按年龄允许达到的最高心率乘以60％
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'D','single')" name="dfff6fda-77c0-41be-82e7-d344229c9586" for="singlelimitdfff6fda-77c0-41be-82e7-d344229c958668" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimitdfff6fda-77c0-41be-82e7-d344229c958668" name="dfff6fda-77c0-41be-82e7-d344229c9586" value="D" />
+                                    D．
+                                    患者出现症状时的心率乘以60％
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'E','single')" name="dfff6fda-77c0-41be-82e7-d344229c9586" for="singlelimitdfff6fda-77c0-41be-82e7-d344229c958669" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimitdfff6fda-77c0-41be-82e7-d344229c958669" name="dfff6fda-77c0-41be-82e7-d344229c9586" value="E" />
+                                    E．
+                                    以上都不对
+
+                                </label>
+                            </td>
+                        </tr>   
+                </table>
+            </dd>
+        </dl>
+    </div>
+        <div class="ItemBot">
+            <div class="opt" style="display: none; float: left;">
+                    <input type="button" class="before" value="上一题" ViewShow="True" PraticeShow="True" />
+                    <input type="button" class="next" value="下一题" ViewShow="True" PraticeShow="True" />
+            </div>
+            <div class="toolBar1">
+                <input type="hidden" class="TitleVideo" value="" />
+                    <a  class="btn showAns" id="2" href="#"  alter="隐藏答案" ViewShow="True" PraticeShow="True" >查看答案</a>
+                    <a  class="btn_NOVideo collect" id="2" href="#"  alter="取消收藏" ViewShow="True" PraticeShow="True" >收藏</a>
+                    <a name="mark"  class="btn_NOVideo mark" id="2" href="#" alter="取消标记" ViewShow="True" PraticeShow="True" >标记</a>
+                    <a  class="btn_NOVideo feedback" id="2" href="#"  alter="已反馈" ViewShow="True" PraticeShow="True" >反馈</a>
+            </div>
+            <div class="config answer" style="display: none">
+                <table class="HiddenStart">
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【答案】
+                                </div>
+                                <div class="anser Con">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【解析】
+                                </div>
+                                <div class="analysits Con">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="ShowStart">
+    <tr>
+        <td>
+            <span style="color: #FF0000;">提示：</span>
+            查看答案、解析，请先<a href="javascript:void(0)" onclick="BuyPlan()">购买>></a>
+                如已购买，请<a href="javascript:void(0)" onclick="loginTo('http://tk.100xuexi.com/Member/loginAndReg.aspx?BackUrl=http://usertk.100xuexi.com:80/PracticeCenter/Chapter/Index?tb_l_PaperQuePlanID=60941||||code=||||TypeMenuFlag=2||||TQuestionPlanID=2554||||Model=chapter||||GroupUserName=')">立即登录>></a>
+                如已获得激活密码，请<a href="javascript:void(0)" class="BtnBuy" onclick="onlineActivating(&#39;&#39;)">立即激活>></a>
+        </td>
+    </tr>
+</table>
+ 
+            </div>
+            <div class="area" style="display: none">
+                <div>
+                    <textarea class="fedbackarea" cols="5" rows="5"></textarea>
+                </div>
+                <div style="margin: 0 auto; width: 68px;">
+                    <input type="button" value="确定" class="btnarea" />
+                </div>
+            </div>
+            <div class="videoshow" style="display: none">
+            </div>
+        </div>
+</div>
+
+<div class="Item config">
+    <a name="08c3bd338-14cb-4fde-8df1-f1b2601a6e04"></a>
+    <input type="hidden" name="txtScore" value="1.00" />
+    <input type="hidden" name="daan" value="D-ABC-D-A-B-BACAD" />
+    <div  id="8c3bd338-14cb-4fde-8df1-f1b2601a6e04" class="question config" number="EE312760">
+        <dl>
+            
+            <dt>
+6. 冠心病患者运动治疗的绝对禁忌证为（　　）。</dt>
+            <dd>
+                <table style="width: 100%">
+                    <input type="hidden" name="myAnsw" value="" />
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'A','single')" name="8c3bd338-14cb-4fde-8df1-f1b2601a6e04" for="singlelimit8c3bd338-14cb-4fde-8df1-f1b2601a6e0465" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit8c3bd338-14cb-4fde-8df1-f1b2601a6e0465" name="8c3bd338-14cb-4fde-8df1-f1b2601a6e04" value="A" />
+                                    A．
+                                    运动时低血压
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'B','single')" name="8c3bd338-14cb-4fde-8df1-f1b2601a6e04" for="singlelimit8c3bd338-14cb-4fde-8df1-f1b2601a6e0466" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit8c3bd338-14cb-4fde-8df1-f1b2601a6e0466" name="8c3bd338-14cb-4fde-8df1-f1b2601a6e04" value="B" />
+                                    B．
+                                    心动过速，120/min
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'C','single')" name="8c3bd338-14cb-4fde-8df1-f1b2601a6e04" for="singlelimit8c3bd338-14cb-4fde-8df1-f1b2601a6e0467" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit8c3bd338-14cb-4fde-8df1-f1b2601a6e0467" name="8c3bd338-14cb-4fde-8df1-f1b2601a6e04" value="C" />
+                                    C．
+                                    中度主动脉瓣狭窄，压力阶差2.7～6.7kPa（25～50mmHg）
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'D','single')" name="8c3bd338-14cb-4fde-8df1-f1b2601a6e04" for="singlelimit8c3bd338-14cb-4fde-8df1-f1b2601a6e0468" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit8c3bd338-14cb-4fde-8df1-f1b2601a6e0468" name="8c3bd338-14cb-4fde-8df1-f1b2601a6e04" value="D" />
+                                    D．
+                                    安静血压大于26.7/14.7kPa（200/110mmHg）
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'E','single')" name="8c3bd338-14cb-4fde-8df1-f1b2601a6e04" for="singlelimit8c3bd338-14cb-4fde-8df1-f1b2601a6e0469" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit8c3bd338-14cb-4fde-8df1-f1b2601a6e0469" name="8c3bd338-14cb-4fde-8df1-f1b2601a6e04" value="E" />
+                                    E．
+                                    高度房室传导阻滞
+
+                                </label>
+                            </td>
+                        </tr>   
+                </table>
+            </dd>
+        </dl>
+    </div>
+        <div class="ItemBot">
+            <div class="opt" style="display: none; float: left;">
+                    <input type="button" class="before" value="上一题" ViewShow="True" PraticeShow="True" />
+                    <input type="button" class="next" value="下一题" ViewShow="True" PraticeShow="True" />
+            </div>
+            <div class="toolBar1">
+                <input type="hidden" class="TitleVideo" value="" />
+                    <a  class="btn showAns" id="2" href="#"  alter="隐藏答案" ViewShow="True" PraticeShow="True" >查看答案</a>
+                    <a  class="btn_NOVideo collect" id="2" href="#"  alter="取消收藏" ViewShow="True" PraticeShow="True" >收藏</a>
+                    <a name="mark"  class="btn_NOVideo mark" id="2" href="#" alter="取消标记" ViewShow="True" PraticeShow="True" >标记</a>
+                    <a  class="btn_NOVideo feedback" id="2" href="#"  alter="已反馈" ViewShow="True" PraticeShow="True" >反馈</a>
+            </div>
+            <div class="config answer" style="display: none">
+                <table class="HiddenStart">
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【答案】
+                                </div>
+                                <div class="anser Con">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【解析】
+                                </div>
+                                <div class="analysits Con">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="ShowStart">
+    <tr>
+        <td>
+            <span style="color: #FF0000;">提示：</span>
+            查看答案、解析，请先<a href="javascript:void(0)" onclick="BuyPlan()">购买>></a>
+                如已购买，请<a href="javascript:void(0)" onclick="loginTo('http://tk.100xuexi.com/Member/loginAndReg.aspx?BackUrl=http://usertk.100xuexi.com:80/PracticeCenter/Chapter/Index?tb_l_PaperQuePlanID=60941||||code=||||TypeMenuFlag=2||||TQuestionPlanID=2554||||Model=chapter||||GroupUserName=')">立即登录>></a>
+                如已获得激活密码，请<a href="javascript:void(0)" class="BtnBuy" onclick="onlineActivating(&#39;&#39;)">立即激活>></a>
+        </td>
+    </tr>
+</table>
+ 
+            </div>
+            <div class="area" style="display: none">
+                <div>
+                    <textarea class="fedbackarea" cols="5" rows="5"></textarea>
+                </div>
+                <div style="margin: 0 auto; width: 68px;">
+                    <input type="button" value="确定" class="btnarea" />
+                </div>
+            </div>
+            <div class="videoshow" style="display: none">
+            </div>
+        </div>
+</div>
+
+<div class="Item config">
+    <a name="0679c445e-a850-4e80-96f7-4500a0109dba"></a>
+    <input type="hidden" name="txtScore" value="1.00" />
+    <input type="hidden" name="daan" value="D-ABC-D-A-B-BACAD" />
+    <div  id="679c445e-a850-4e80-96f7-4500a0109dba" class="question config" number="EE312761">
+        <dl>
+            
+            <dt>
+7. 衡量心血管储备和健康的最好指标为（　　）。</dt>
+            <dd>
+                <table style="width: 100%">
+                    <input type="hidden" name="myAnsw" value="" />
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'A','single')" name="679c445e-a850-4e80-96f7-4500a0109dba" for="singlelimit679c445e-a850-4e80-96f7-4500a0109dba65" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit679c445e-a850-4e80-96f7-4500a0109dba65" name="679c445e-a850-4e80-96f7-4500a0109dba" value="A" />
+                                    A．
+                                    心率
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'B','single')" name="679c445e-a850-4e80-96f7-4500a0109dba" for="singlelimit679c445e-a850-4e80-96f7-4500a0109dba66" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit679c445e-a850-4e80-96f7-4500a0109dba66" name="679c445e-a850-4e80-96f7-4500a0109dba" value="B" />
+                                    B．
+                                    心搏出量
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'C','single')" name="679c445e-a850-4e80-96f7-4500a0109dba" for="singlelimit679c445e-a850-4e80-96f7-4500a0109dba67" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit679c445e-a850-4e80-96f7-4500a0109dba67" name="679c445e-a850-4e80-96f7-4500a0109dba" value="C" />
+                                    C．
+                                    心排血量
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'D','single')" name="679c445e-a850-4e80-96f7-4500a0109dba" for="singlelimit679c445e-a850-4e80-96f7-4500a0109dba68" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit679c445e-a850-4e80-96f7-4500a0109dba68" name="679c445e-a850-4e80-96f7-4500a0109dba" value="D" />
+                                    D．
+                                    最大耗氧量
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'E','single')" name="679c445e-a850-4e80-96f7-4500a0109dba" for="singlelimit679c445e-a850-4e80-96f7-4500a0109dba69" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit679c445e-a850-4e80-96f7-4500a0109dba69" name="679c445e-a850-4e80-96f7-4500a0109dba" value="E" />
+                                    E．
+                                    动静脉氧分压差
+
+                                </label>
+                            </td>
+                        </tr>   
+                </table>
+            </dd>
+        </dl>
+    </div>
+        <div class="ItemBot">
+            <div class="opt" style="display: none; float: left;">
+                    <input type="button" class="before" value="上一题" ViewShow="True" PraticeShow="True" />
+                    <input type="button" class="next" value="下一题" ViewShow="True" PraticeShow="True" />
+            </div>
+            <div class="toolBar1">
+                <input type="hidden" class="TitleVideo" value="" />
+                    <a  class="btn showAns" id="2" href="#"  alter="隐藏答案" ViewShow="True" PraticeShow="True" >查看答案</a>
+                    <a  class="btn_NOVideo collect" id="2" href="#"  alter="取消收藏" ViewShow="True" PraticeShow="True" >收藏</a>
+                    <a name="mark"  class="btn_NOVideo mark" id="2" href="#" alter="取消标记" ViewShow="True" PraticeShow="True" >标记</a>
+                    <a  class="btn_NOVideo feedback" id="2" href="#"  alter="已反馈" ViewShow="True" PraticeShow="True" >反馈</a>
+            </div>
+            <div class="config answer" style="display: none">
+                <table class="HiddenStart">
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【答案】
+                                </div>
+                                <div class="anser Con">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【解析】
+                                </div>
+                                <div class="analysits Con">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="ShowStart">
+    <tr>
+        <td>
+            <span style="color: #FF0000;">提示：</span>
+            查看答案、解析，请先<a href="javascript:void(0)" onclick="BuyPlan()">购买>></a>
+                如已购买，请<a href="javascript:void(0)" onclick="loginTo('http://tk.100xuexi.com/Member/loginAndReg.aspx?BackUrl=http://usertk.100xuexi.com:80/PracticeCenter/Chapter/Index?tb_l_PaperQuePlanID=60941||||code=||||TypeMenuFlag=2||||TQuestionPlanID=2554||||Model=chapter||||GroupUserName=')">立即登录>></a>
+                如已获得激活密码，请<a href="javascript:void(0)" class="BtnBuy" onclick="onlineActivating(&#39;&#39;)">立即激活>></a>
+        </td>
+    </tr>
+</table>
+ 
+            </div>
+            <div class="area" style="display: none">
+                <div>
+                    <textarea class="fedbackarea" cols="5" rows="5"></textarea>
+                </div>
+                <div style="margin: 0 auto; width: 68px;">
+                    <input type="button" value="确定" class="btnarea" />
+                </div>
+            </div>
+            <div class="videoshow" style="display: none">
+            </div>
+        </div>
+</div>
+
+<div class="Item config">
+    <a name="07889a5fe-2b81-4175-8456-b9d2ba7c193b"></a>
+    <input type="hidden" name="txtScore" value="1.00" />
+    <input type="hidden" name="daan" value="E-ABC-D-A-B-BACAD" />
+    <div  id="7889a5fe-2b81-4175-8456-b9d2ba7c193b" class="question config" number="EE312762">
+        <dl>
+            
+            <dt>
+8. 横膈活动每增加1cm，可增加肺通气量（　　）。</dt>
+            <dd>
+                <table style="width: 100%">
+                    <input type="hidden" name="myAnsw" value="" />
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'A','single')" name="7889a5fe-2b81-4175-8456-b9d2ba7c193b" for="singlelimit7889a5fe-2b81-4175-8456-b9d2ba7c193b65" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit7889a5fe-2b81-4175-8456-b9d2ba7c193b65" name="7889a5fe-2b81-4175-8456-b9d2ba7c193b" value="A" />
+                                    A．
+                                    50～100mL
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'B','single')" name="7889a5fe-2b81-4175-8456-b9d2ba7c193b" for="singlelimit7889a5fe-2b81-4175-8456-b9d2ba7c193b66" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit7889a5fe-2b81-4175-8456-b9d2ba7c193b66" name="7889a5fe-2b81-4175-8456-b9d2ba7c193b" value="B" />
+                                    B．
+                                    100～150mL
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'C','single')" name="7889a5fe-2b81-4175-8456-b9d2ba7c193b" for="singlelimit7889a5fe-2b81-4175-8456-b9d2ba7c193b67" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit7889a5fe-2b81-4175-8456-b9d2ba7c193b67" name="7889a5fe-2b81-4175-8456-b9d2ba7c193b" value="C" />
+                                    C．
+                                    150～200mL
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'D','single')" name="7889a5fe-2b81-4175-8456-b9d2ba7c193b" for="singlelimit7889a5fe-2b81-4175-8456-b9d2ba7c193b68" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit7889a5fe-2b81-4175-8456-b9d2ba7c193b68" name="7889a5fe-2b81-4175-8456-b9d2ba7c193b" value="D" />
+                                    D．
+                                    200～250mL
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'E','single')" name="7889a5fe-2b81-4175-8456-b9d2ba7c193b" for="singlelimit7889a5fe-2b81-4175-8456-b9d2ba7c193b69" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimit7889a5fe-2b81-4175-8456-b9d2ba7c193b69" name="7889a5fe-2b81-4175-8456-b9d2ba7c193b" value="E" />
+                                    E．
+                                    250～300mL
+
+                                </label>
+                            </td>
+                        </tr>   
+                </table>
+            </dd>
+        </dl>
+    </div>
+        <div class="ItemBot">
+            <div class="opt" style="display: none; float: left;">
+                    <input type="button" class="before" value="上一题" ViewShow="True" PraticeShow="True" />
+                    <input type="button" class="next" value="下一题" ViewShow="True" PraticeShow="True" />
+            </div>
+            <div class="toolBar1">
+                <input type="hidden" class="TitleVideo" value="" />
+                    <a  class="btn showAns" id="2" href="#"  alter="隐藏答案" ViewShow="True" PraticeShow="True" >查看答案</a>
+                    <a  class="btn_NOVideo collect" id="2" href="#"  alter="取消收藏" ViewShow="True" PraticeShow="True" >收藏</a>
+                    <a name="mark"  class="btn_NOVideo mark" id="2" href="#" alter="取消标记" ViewShow="True" PraticeShow="True" >标记</a>
+                    <a  class="btn_NOVideo feedback" id="2" href="#"  alter="已反馈" ViewShow="True" PraticeShow="True" >反馈</a>
+            </div>
+            <div class="config answer" style="display: none">
+                <table class="HiddenStart">
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【答案】
+                                </div>
+                                <div class="anser Con">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【解析】
+                                </div>
+                                <div class="analysits Con">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="ShowStart">
+    <tr>
+        <td>
+            <span style="color: #FF0000;">提示：</span>
+            查看答案、解析，请先<a href="javascript:void(0)" onclick="BuyPlan()">购买>></a>
+                如已购买，请<a href="javascript:void(0)" onclick="loginTo('http://tk.100xuexi.com/Member/loginAndReg.aspx?BackUrl=http://usertk.100xuexi.com:80/PracticeCenter/Chapter/Index?tb_l_PaperQuePlanID=60941||||code=||||TypeMenuFlag=2||||TQuestionPlanID=2554||||Model=chapter||||GroupUserName=')">立即登录>></a>
+                如已获得激活密码，请<a href="javascript:void(0)" class="BtnBuy" onclick="onlineActivating(&#39;&#39;)">立即激活>></a>
+        </td>
+    </tr>
+</table>
+ 
+            </div>
+            <div class="area" style="display: none">
+                <div>
+                    <textarea class="fedbackarea" cols="5" rows="5"></textarea>
+                </div>
+                <div style="margin: 0 auto; width: 68px;">
+                    <input type="button" value="确定" class="btnarea" />
+                </div>
+            </div>
+            <div class="videoshow" style="display: none">
+            </div>
+        </div>
+</div>
+
+<div class="Item config">
+    <a name="0ef0aedb0-b85d-4248-8097-c987613204bd"></a>
+    <input type="hidden" name="txtScore" value="1.00" />
+    <input type="hidden" name="daan" value="B-ABC-D-A-B-BACAD" />
+    <div  id="ef0aedb0-b85d-4248-8097-c987613204bd" class="question config" number="EE312763">
+        <dl>
+            
+            <dt>
+9. 心功能分级下述不正确的是（　　）。</dt>
+            <dd>
+                <table style="width: 100%">
+                    <input type="hidden" name="myAnsw" value="" />
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'A','single')" name="ef0aedb0-b85d-4248-8097-c987613204bd" for="singlelimitef0aedb0-b85d-4248-8097-c987613204bd65" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimitef0aedb0-b85d-4248-8097-c987613204bd65" name="ef0aedb0-b85d-4248-8097-c987613204bd" value="A" />
+                                    A．
+                                    一级可正常行走，快走引起呼吸短促
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'B','single')" name="ef0aedb0-b85d-4248-8097-c987613204bd" for="singlelimitef0aedb0-b85d-4248-8097-c987613204bd66" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimitef0aedb0-b85d-4248-8097-c987613204bd66" name="ef0aedb0-b85d-4248-8097-c987613204bd" value="B" />
+                                    B．
+                                    二级时最大代谢当量为3METs
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'C','single')" name="ef0aedb0-b85d-4248-8097-c987613204bd" for="singlelimitef0aedb0-b85d-4248-8097-c987613204bd67" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimitef0aedb0-b85d-4248-8097-c987613204bd67" name="ef0aedb0-b85d-4248-8097-c987613204bd" value="C" />
+                                    C．
+                                    三级者稍一走动即出现呼吸短促
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'D','single')" name="ef0aedb0-b85d-4248-8097-c987613204bd" for="singlelimitef0aedb0-b85d-4248-8097-c987613204bd68" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimitef0aedb0-b85d-4248-8097-c987613204bd68" name="ef0aedb0-b85d-4248-8097-c987613204bd" value="D" />
+                                    D．
+                                    四级者只可静卧，坐位出现呼吸短促
+
+                                </label>
+                            </td>
+                        </tr>   
+                        <tr>
+                            <td class="SuSpenSionXu">
+                                <label onclick="itemClick(this,'E','single')" name="ef0aedb0-b85d-4248-8097-c987613204bd" for="singlelimitef0aedb0-b85d-4248-8097-c987613204bd69" class="SuSpenSion">
+                                    <input type="radio" style=" vertical-align:middle;" id="singlelimitef0aedb0-b85d-4248-8097-c987613204bd69" name="ef0aedb0-b85d-4248-8097-c987613204bd" value="E" />
+                                    E．
+                                    四级时最大代谢当量为1.5METs
+
+                                </label>
+                            </td>
+                        </tr>   
+                </table>
+            </dd>
+        </dl>
+    </div>
+        <div class="ItemBot">
+            <div class="opt" style="display: none; float: left;">
+                    <input type="button" class="before" value="上一题" ViewShow="True" PraticeShow="True" />
+                    <input type="button" class="next" value="下一题" ViewShow="True" PraticeShow="True" />
+            </div>
+            <div class="toolBar1">
+                <input type="hidden" class="TitleVideo" value="" />
+                    <a  class="btn showAns" id="2" href="#"  alter="隐藏答案" ViewShow="True" PraticeShow="True" >查看答案</a>
+                    <a  class="btn_NOVideo collect" id="2" href="#"  alter="取消收藏" ViewShow="True" PraticeShow="True" >收藏</a>
+                    <a name="mark"  class="btn_NOVideo mark" id="2" href="#" alter="取消标记" ViewShow="True" PraticeShow="True" >标记</a>
+                    <a  class="btn_NOVideo feedback" id="2" href="#"  alter="已反馈" ViewShow="True" PraticeShow="True" >反馈</a>
+            </div>
+            <div class="config answer" style="display: none">
+                <table class="HiddenStart">
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【答案】
+                                </div>
+                                <div class="anser Con">
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <div style="overflow: hidden; zoom: 1; position: relative; display: block;">
+                                <div class="Title">
+                                    【解析】
+                                </div>
+                                <div class="analysits Con">
+                                    &nbsp;
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                </table>
+                <table class="ShowStart">
+    <tr>
+        <td>
+            <span style="color: #FF0000;">提示：</span>
+            查看答案、解析，请先<a href="javascript:void(0)" onclick="BuyPlan()">购买>></a>
+                如已购买，请<a href="javascript:void(0)" onclick="loginTo('http://tk.100xuexi.com/Member/loginAndReg.aspx?BackUrl=http://usertk.100xuexi.com:80/PracticeCenter/Chapter/Index?tb_l_PaperQuePlanID=60941||||code=||||TypeMenuFlag=2||||TQuestionPlanID=2554||||Model=chapter||||GroupUserName=')">立即登录>></a>
+                如已获得激活密码，请<a href="javascript:void(0)" class="BtnBuy" onclick="onlineActivating(&#39;&#39;)">立即激活>></a>
+        </td>
+    </tr>
+</table>
+ 
+            </div>
+            <div class="area" style="display: none">
+                <div>
+                    <textarea class="fedbackarea" cols="5" rows="5"></textarea>
+                </div>
+                <div style="margin: 0 auto; width: 68px;">
+                    <input type="button" value="确定" class="btnarea" />
+                </div>
+            </div>
+            <div class="videoshow" style="display: none">
+            </div>
+        </div>
+</div>
+
+                </div>
+
+        </div>
+    </div>
+</div>
+<div id="examData" style="display: none">
+    <div>
+        考试时间设置
+    </div>
+    <div>
+    </div>
+    <input type="button" class="ok" value="OK" style="margin-right: 10px" />
+    <input type="button" class="cancel" value="Cancel" />
+</div>
+<input id="videoUrl" type="hidden" />
+<input id="videotitle" type="hidden" />
+<input id="isPlay" type="hidden" value="0" />
+
+<script type="text/javascript">
+    $(function () {
+        
+        //加载动画
+        $("#loading").css("display","none");
+    })
+
+</script>
+    
+    </div>
+    
+</div>
+<!--答题概况-->
+<input type="hidden" id="hidtheAnswer" /> 
+<div id="righter" class="RightBar">
+    <div class="BgTop"></div>
+    <div class="BgMid">
+        <div class="Time" id="clock"></div>
+        <ul>
+            <li><a href="javascript:void(0)" class="Btn" onclick="Showansersum()">答题卡</a></li>
+            <li><a href="javascript:void(0)" class="Btn" id="showall">查看全部答案</a></li>
+             <li><a href="javascript:void(0)" class="Btn" alter="整份试卷展示" id="one">一题一题展示</a></li>
+            <li><a href="javascript:void(0)" class="Btn BtnCalculator">计算器</a></li>
+            <li><a href="javascript:void(0)" class="Btn" id="again">重新答题</a></li>
+            <li><a href="javascript:void(0)" class="Btn" id="over" onclick="ClickOver()">结束练习</a></li>
+        </ul>
+    </div>
+    <div class="BgBot"></div>
+</div>
+<script type="text/javascript">
+    $(document).ready(function () {
+        var testOver = document.getElementById("over");
+        testOver.tested = false;
+        testOver.saved = true;
+    });
+</script>
+
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+        $(function () {
+            //底部
+            $(".footer").css("display", "none");
+            Showans();
+            //.delay(3000).slideUp("slow").click(function () {alert("1");});
+        })
+        $("body").css("height", "auto"); //自动
+        $(".main").css("height", "auto"); //自动
+        $(".right").css("height", "auto"); //自动
+        $(".right").css("border-top", "1px solid #007371"); //自动
+        $(".right_xia").css("height", "auto");
+        var height = $(window).height() - 100;
+        $(".RightCon01").css("height", height + "px"); //自动
+        var leng = 0;
+
+        var width = $(window).width();
+        if (width < 1002) {
+            $("#box").css("width", "1002px");
+        }
+        else {
+            $("#box").css("width", "auto");
+        }
+
+        $(window).resize(function () {
+            //$("span").text(x += 1);
+            $("body").css("height", "auto"); //自动
+            $(".main").css("height", "auto"); //自动
+            $(".right").css("height", "auto"); //自动
+            $(".right").css("border-top", "1px solid #007371"); //自动
+            $(".right_xia").css("height", "auto");
+            var height = $(window).height() - 50;
+            $(".RightCon01").css("height", height + "px"); //自动
+
+            var leng = 0;
+
+
+            var width = $(window).width();
+            if (width < 1002) {
+                $("#box").css("width", "1002px");
+            } else {
+                $("#box").css("width", "auto");
+            }
+        });
+
+    });
+</script>
+<script type="text/javascript" src="http://webchat.100xuexi.com/template/js/WebIM.js"></script>
+<div class="WebChat_Rate" title="在线聊天"></div>
+<script type="text/javascript">
+    $(function () {
+        $(".WebChat_Rate").click(function () {
+            var userID = "10009";
+            var platID = 3;
+            var productID = $("#TQuestionPlanID").val();
+            if (isUserLogon()) {
+                userID = $.cookie('xx_UserID');
+            }
+            WebIM.Home(userID, productID, platID)
+        });
+    });
+</script>
+
+<script src="/Content/js/KnowledgePoint.js?v=2" type="text/javascript"></script>
+
+        </div>
+    </div>
+
+    <div class="Mask"></div>
+    <div class="GuideBox">
+        <div class="Inner">
+            <a href="javascript:void(0)" onclick="CloseGuideBox()" title="关闭" class="BtnClose"></a>
+        </div>
+    </div>
+    <script type="text/javascript">
+        function nocopy() {
+            var allowHtmlCopy = parseInt("0");
+            if (allowHtmlCopy > 0) return;
+            document.onselectstart = function () { return false; };
+            document.onselect = function () { document.selection.empty(); };
+            document.onbeforecopy = function () { return false; };
+            document.oncopy = function () { document.selection.empty(); };
+            //document.oncontextmenu = function () { return false; };
+        }
+
+        function CloseGuideBox() {
+            $(".Mask").css("display", "none");
+            $(".GuideBox").css("display", "none");
+        }
+        /*选项卡控制*/
+        function setTab(name, cursel, n) {
+            for (i = 1; i <= n; i++) {
+                var menu = document.getElementById(name + i);
+                var con = document.getElementById("con" + name + i);
+                menu.className = i == cursel ? "selected" : "";
+                con.style.display = i == cursel ? "block" : "none";
+            }
+        }
+
+        $(function () {
+            nocopy();
+
+            DragPubic(document.getElementById("ColerExam")); //页面设置
+            $("#ColerExam").css("cursor", "move");
+            //LogPubic(document.getElementById("login_Close")); //页面设置
+            //$("#login_Close").css("cursor", "move");
+            calPubic(document.getElementById("ClacTitle")); //页面设置
+            //左侧显示隐藏
+            $("#lefter").fadeIn(300, function () {
+
+            });
+            setTimeout(leftHide, 3000);
+            //底部显示隐藏
+            $("#bottom").fadeIn(300, function () {
+
+            });
+            setTimeout(bottomHide, 3000);
+            //右侧显示隐藏
+            $("#righter").fadeIn(300, function () {
+
+            });
+            setTimeout(rightHide, 3000);
+            //头部显示隐藏
+            $("#top").fadeIn(300, function () {
+
+            });
+            setTimeout(topHide, 3000);
+
+            $(".BtnCalculator").click(function () {
+                $("#calc").show();
+            });
+
+            $(".BtnSearch").click(function () {
+                $("#search").show();
+            });
+
+            //设置当前Left最高高度
+            var Heid = $(window).height(); //当前显示器高度
+            if ($(".inner").height() >= (Heid - 200)) {//滚动
+                $(".zj_nav").css("height", (Heid - 200) + "px");
+
+            }
+            else {
+                $(".zj_nav").css("height", "auto");
+            }
+        })
+
+        function Chike(itemID, o) {
+            var classt = $(o).find("span").attr("class"); //.addClass("Hid");
+            if (classt == "ulShow")
+                $(o).find("span").attr("class", "ulHid");
+            else
+                $(o).find("span").attr("class", "ulShow");
+            if ($("#" + itemID).css("display") == "none") {
+                $("#" + itemID).css("display", "block");
+            }
+            else {
+                $("#" + itemID).css("display", "none");
+            }
+            //设置当前Left最高高度
+            var Heid = $(window).height(); //当前显示器高度
+            if ($(".inner").height() >= (Heid - 200)) {//滚动
+                $(".zj_nav").css("height", (Heid - 200) + "px");
+            }
+            else {
+                $(".zj_nav").css("height", "auto");
+            }
+        }
+
+        function Btn_chick(url) {
+            var ict = url;
+            //判断用户是否登陆
+            $.get("/LoginManager/GetUserName", { rand: Math.random() }, function (data) {
+                var strs = new Array(); //定义一数组
+                strs = data.split("&&");
+                if ($.trim(strs[0]) != "0") {
+                    window.location.href = ict + "?code=" + $("#code").val() + "&groupName=" + $("#groupName").val() + "&TQuestionPlanID=" + $("#TQuestionPlanID").val() + "&tb_l_PaperQuePlanID=" + $("#tb_l_PaperQuePlanIDtypess").val() + "";
+                }
+                else {
+                    if ($("#code").val() != "") {
+                        exeBuy();
+                    }
+                    else {
+                        window.location.href = "http://tk.100xuexi.com/Member/loginAndReg.aspx?BackUrl=" + ict + "?code=" + $("#code").val() + "||||groupName=" + $("#groupName").val() + "||||TQuestionPlanID=" + $("#TQuestionPlanID").val() + "||||tb_l_PaperQuePlanID=" + $("#tb_l_PaperQuePlanIDtypess").val() + "";
+                    }
+                }
+            });
+        }
+    </script>
+    <script src="/Content/js/leftBar.js" type="text/javascript"></script>
+    <script type="text/javascript" src="http://app.100xuexi.com/app/getappversion.ashx?type=tk"></script>
+    <script type="text/javascript" src="/Plug/videoplayer/AC_RunActiveContent_new.js"></script>
+        <script type="text/javascript" src="http://g.100xuexi.com/CssModel/botad_reading.js"></script>
+    <script type="text/javascript">
+        window.onerror = function () { return true; }
+    </script>
+</body>
+</html>
