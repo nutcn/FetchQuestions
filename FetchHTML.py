@@ -26,9 +26,3 @@ for planID in range(60900, 60950):
 	with codecs.open(fileName, 'w', 'utf-8') as htmlfile:
 		if r.status_code == requests.codes.ok:
 			htmlfile.write(r.text)
-
-
-
-
-
-
