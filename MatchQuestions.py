@@ -5,7 +5,7 @@ import re
 import codecs
 
 with codecs.open('QuestionAndAnswer.md', 'w', 'utf-8') as writeFile:
-	for chapter in range(60900, 60950):
+	for chapter in range(62607, 62644):
 		fileName = 'Chapters/Chapter' + str(chapter)
 		with codecs.open(fileName, 'r', 'utf-8') as readFile:
 			matchForChapterTitle = re.compile(r'\"' + u'\u7b2c' + r'\d' + u"[\u0000-\ufffd]+" + r'(?=\/>)')
@@ -29,7 +29,7 @@ with codecs.open('QuestionAndAnswer.md', 'w', 'utf-8') as writeFile:
 				matchQuestions = matchForQuestions.search(line, 0)
 				if matchQuestions:
 					questionWithNumberSpace = re.split(r'\.', matchQuestions.group(0))
-					question = '<br>\n**' + questionWithNumberSpace[0] +' .' + questionWithNumberSpace[1] + '**\n\n'
+					question = '<br>\n\n\n**' + questionWithNumberSpace[0] +' .' + questionWithNumberSpace[1] + '**<br>'
 					writeFile.write(question)
 				#答案选项
 				matchOptions = matchForOptions.search(line, 0)
@@ -38,6 +38,7 @@ with codecs.open('QuestionAndAnswer.md', 'w', 'utf-8') as writeFile:
 					mergeOptionString = line.strip()
 				if optionLine == i:
 					mergeOptionString += line.lstrip()
+					mergeOptionString += '  \t\t'
 					writeFile.write(mergeOptionString)
 
 
