@@ -4,9 +4,9 @@
 import re
 import codecs
 
-with codecs.open('QuestionAndAnswer.md', 'w', 'utf-8') as writeFile:
-	for chapter in range(60900, 60950):
-		fileName = 'Chapters/Chapter' + str(chapter)
+with codecs.open('Exam.md', 'w', 'utf-8') as writeFile:
+	for chapter in range(62641, 62645):
+		fileName = 'MockExam/Exam' + str(chapter)
 		with codecs.open(fileName, 'r', 'utf-8') as readFile:
 			matchForChapterTitle = re.compile(r'\"' + u'\u7b2c' + r'\d' + u"[\u0000-\ufffd]+" + r'(?=\/>)')
 			matchForQuestions = re.compile(r'^\d+.\s' + u"[\u0000-\ufffd]+" + r'(?=<\/dt>)') # 匹配题目问题

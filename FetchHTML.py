@@ -3,9 +3,9 @@
 import requests
 import codecs
 
-URLString = 'http://usertk.100xuexi.com/PracticeCenter/Chapter/Index'
+URLString = 'http://usertk.100xuexi.com/PracticeCenter/MockExam/Index'
 queryParams = {
-    'TQuestionPlanID': 2554,
+    'TQuestionPlanID': 2604,
     'GroupUserName' : '',
     'code' : '',
     'tb_l_PaperQuePlanID' : 60900,
@@ -14,13 +14,13 @@ queryParams = {
 }
 
 
-for planID in range(60900, 60950):
+for planID in range(62641, 62645):
 	queryParams['tb_l_PaperQuePlanID'] = planID
 
 	r = requests.get(URLString, params=queryParams)
 	r.encoding = 'utf-8'
 
-	fileName = 'Chapters/Chapter' + str(planID)
+	fileName = 'MockExam/Exam' + str(planID)
 	print(fileName)
 
 	with codecs.open(fileName, 'w', 'utf-8') as htmlfile:
